@@ -336,6 +336,22 @@
       .hero-status-dot { animation: none; }
     }
 
+    /* ── PRINT ── */
+    @media print {
+      *, *::before, *::after { background: #fff !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
+      nav, .nav-toggle, .skip-link, .cat-tabs, .hero-buttons, #contact, footer .footer-socials, .anim { display: none !important; }
+      section { padding: 20px 0 !important; page-break-inside: avoid; }
+      .container { max-width: 100% !important; padding: 0 !important; }
+      a { color: #000 !important; text-decoration: underline !important; }
+      a[href^="http"]::after, a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555 !important; }
+      .hero-photo-ring { width: 120px !important; height: 120px !important; background: #000 !important; }
+      .hero-name { font-size: 2rem !important; }
+      .repo-card, .article-card, .case-study, .timeline-item, .about-highlight, .edu-block { border: 1px solid #ccc !important; page-break-inside: avoid; }
+      .sec-title, .hero-name, .timeline-role, .repo-name, .article-title, .case-title, .contact-title { color: #000 !important; }
+      .cat-group { display: block !important; }
+      img { max-width: 200px; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
