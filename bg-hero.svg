@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="node" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="1"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Edges: Layer 1 (x=220) -> Layer 2 (x=640) -->
+  <g stroke="#2dd4bf" stroke-width="1" fill="none">
+    <line x1="220" y1="180" x2="640" y2="120" stroke-opacity="0.16"/>
+    <line x1="220" y1="180" x2="640" y2="280" stroke-opacity="0.22"/>
+    <line x1="220" y1="180" x2="640" y2="440" stroke-opacity="0.12"/>
+    <line x1="220" y1="180" x2="640" y2="600" stroke-opacity="0.10"/>
+    <line x1="220" y1="180" x2="640" y2="760" stroke-opacity="0.08"/>
+    <line x1="220" y1="360" x2="640" y2="120" stroke-opacity="0.14"/>
+    <line x1="220" y1="360" x2="640" y2="280" stroke-opacity="0.30"/>
+    <line x1="220" y1="360" x2="640" y2="440" stroke-opacity="0.22"/>
+    <line x1="220" y1="360" x2="640" y2="600" stroke-opacity="0.14"/>
+    <line x1="220" y1="360" x2="640" y2="760" stroke-opacity="0.10"/>
+    <line x1="220" y1="540" x2="640" y2="120" stroke-opacity="0.10"/>
+    <line x1="220" y1="540" x2="640" y2="280" stroke-opacity="0.18"/>
+    <line x1="220" y1="540" x2="640" y2="440" stroke-opacity="0.28"/>
+    <line x1="220" y1="540" x2="640" y2="600" stroke-opacity="0.22"/>
+    <line x1="220" y1="540" x2="640" y2="760" stroke-opacity="0.14"/>
+    <line x1="220" y1="720" x2="640" y2="120" stroke-opacity="0.08"/>
+    <line x1="220" y1="720" x2="640" y2="280" stroke-opacity="0.10"/>
+    <line x1="220" y1="720" x2="640" y2="440" stroke-opacity="0.20"/>
+    <line x1="220" y1="720" x2="640" y2="600" stroke-opacity="0.26"/>
+    <line x1="220" y1="720" x2="640" y2="760" stroke-opacity="0.22"/>
+  </g>
+
+  <!-- Edges: Layer 2 (x=640) -> Layer 3 (x=1060) -->
+  <g stroke="#2dd4bf" stroke-width="1" fill="none">
+    <line x1="640" y1="120" x2="1060" y2="180" stroke-opacity="0.20"/>
+    <line x1="640" y1="120" x2="1060" y2="340" stroke-opacity="0.12"/>
+    <line x1="640" y1="120" x2="1060" y2="500" stroke-opacity="0.08"/>
+    <line x1="640" y1="120" x2="1060" y2="660" stroke-opacity="0.06"/>
+    <line x1="640" y1="280" x2="1060" y2="180" stroke-opacity="0.26"/>
+    <line x1="640" y1="280" x2="1060" y2="340" stroke-opacity="0.30"/>
+    <line x1="640" y1="280" x2="1060" y2="500" stroke-opacity="0.14"/>
+    <line x1="640" y1="280" x2="1060" y2="660" stroke-opacity="0.10"/>
+    <line x1="640" y1="440" x2="1060" y2="180" stroke-opacity="0.16"/>
+    <line x1="640" y1="440" x2="1060" y2="340" stroke-opacity="0.28"/>
+    <line x1="640" y1="440" x2="1060" y2="500" stroke-opacity="0.24"/>
+    <line x1="640" y1="440" x2="1060" y2="660" stroke-opacity="0.16"/>
+    <line x1="640" y1="600" x2="1060" y2="180" stroke-opacity="0.10"/>
+    <line x1="640" y1="600" x2="1060" y2="340" stroke-opacity="0.18"/>
+    <line x1="640" y1="600" x2="1060" y2="500" stroke-opacity="0.32"/>
+    <line x1="640" y1="600" x2="1060" y2="660" stroke-opacity="0.24"/>
+    <line x1="640" y1="760" x2="1060" y2="180" stroke-opacity="0.06"/>
+    <line x1="640" y1="760" x2="1060" y2="340" stroke-opacity="0.10"/>
+    <line x1="640" y1="760" x2="1060" y2="500" stroke-opacity="0.20"/>
+    <line x1="640" y1="760" x2="1060" y2="660" stroke-opacity="0.28"/>
+  </g>
+
+  <!-- Edges: Layer 3 (x=1060) -> Layer 4 (x=1420) -->
+  <g stroke="#2dd4bf" stroke-width="1" fill="none">
+    <line x1="1060" y1="180" x2="1420" y2="260" stroke-opacity="0.26"/>
+    <line x1="1060" y1="180" x2="1420" y2="450" stroke-opacity="0.14"/>
+    <line x1="1060" y1="180" x2="1420" y2="640" stroke-opacity="0.08"/>
+    <line x1="1060" y1="340" x2="1420" y2="260" stroke-opacity="0.30"/>
+    <line x1="1060" y1="340" x2="1420" y2="450" stroke-opacity="0.22"/>
+    <line x1="1060" y1="340" x2="1420" y2="640" stroke-opacity="0.12"/>
+    <line x1="1060" y1="500" x2="1420" y2="260" stroke-opacity="0.18"/>
+    <line x1="1060" y1="500" x2="1420" y2="450" stroke-opacity="0.32"/>
+    <line x1="1060" y1="500" x2="1420" y2="640" stroke-opacity="0.24"/>
+    <line x1="1060" y1="660" x2="1420" y2="260" stroke-opacity="0.10"/>
+    <line x1="1060" y1="660" x2="1420" y2="450" stroke-opacity="0.22"/>
+    <line x1="1060" y1="660" x2="1420" y2="640" stroke-opacity="0.30"/>
+  </g>
+
+  <!-- Highlighted active signal path -->
+  <g stroke="#5eead4" stroke-width="1.5" fill="none" stroke-opacity="0.85">
+    <line x1="220" y1="360" x2="640" y2="280"/>
+    <line x1="640" y1="280" x2="1060" y2="340"/>
+    <line x1="1060" y1="340" x2="1420" y2="260"/>
+  </g>
+
+  <!-- Nodes: Layer 1 -->
+  <g>
+    <circle cx="220" cy="180" r="7" fill="#2dd4bf"/>
+    <circle cx="220" cy="360" r="8" fill="#5eead4"/>
+    <circle cx="220" cy="540" r="7" fill="#2dd4bf"/>
+    <circle cx="220" cy="720" r="7" fill="#2dd4bf"/>
+  </g>
+  <!-- Nodes: Layer 2 -->
+  <g fill="#2dd4bf">
+    <circle cx="640" cy="120" r="7"/>
+    <circle cx="640" cy="280" r="9" fill="#5eead4"/>
+    <circle cx="640" cy="440" r="7"/>
+    <circle cx="640" cy="600" r="7"/>
+    <circle cx="640" cy="760" r="7"/>
+  </g>
+  <!-- Nodes: Layer 3 -->
+  <g fill="#2dd4bf">
+    <circle cx="1060" cy="180" r="7"/>
+    <circle cx="1060" cy="340" r="9" fill="#5eead4"/>
+    <circle cx="1060" cy="500" r="7"/>
+    <circle cx="1060" cy="660" r="7"/>
+  </g>
+  <!-- Nodes: Layer 4 (output) -->
+  <g fill="#2dd4bf">
+    <circle cx="1420" cy="260" r="9" fill="#5eead4"/>
+    <circle cx="1420" cy="450" r="7"/>
+    <circle cx="1420" cy="640" r="7"/>
+  </g>
+
+  <!-- Node glows on highlighted path -->
+  <g>
+    <circle cx="220" cy="360" r="28" fill="url(#node)" opacity="0.6"/>
+    <circle cx="640" cy="280" r="28" fill="url(#node)" opacity="0.6"/>
+    <circle cx="1060" cy="340" r="28" fill="url(#node)" opacity="0.6"/>
+    <circle cx="1420" cy="260" r="28" fill="url(#node)" opacity="0.6"/>
+  </g>
+</svg>

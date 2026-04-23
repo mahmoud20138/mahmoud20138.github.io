@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="nodeglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2dd4bf" fill-opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <g stroke="#2dd4bf" fill="none" stroke-width="1.4">
+    <path d="M 140 450 C 260 450 280 200 420 200" stroke-opacity="0.35" marker-end="url(#arrow)"/>
+    <path d="M 140 450 C 260 450 280 450 420 450" stroke-opacity="0.55" marker-end="url(#arrow)"/>
+    <path d="M 140 450 C 260 450 280 700 420 700" stroke-opacity="0.35" marker-end="url(#arrow)"/>
+
+    <path d="M 480 200 C 580 200 600 320 720 320" stroke-opacity="0.45" marker-end="url(#arrow)"/>
+    <path d="M 480 450 C 580 450 600 320 720 320" stroke-opacity="0.45" marker-end="url(#arrow)"/>
+    <path d="M 480 450 C 580 450 600 580 720 580" stroke-opacity="0.45" marker-end="url(#arrow)"/>
+    <path d="M 480 700 C 580 700 600 580 720 580" stroke-opacity="0.35" marker-end="url(#arrow)"/>
+
+    <path d="M 780 320 C 880 320 900 450 1020 450" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+    <path d="M 780 580 C 880 580 900 450 1020 450" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+
+    <path d="M 1080 450 C 1200 450 1220 280 1360 280" stroke-opacity="0.45" marker-end="url(#arrow)"/>
+    <path d="M 1080 450 C 1200 450 1220 450 1360 450" stroke-opacity="0.65" marker-end="url(#arrow)"/>
+    <path d="M 1080 450 C 1200 450 1220 620 1360 620" stroke-opacity="0.45" marker-end="url(#arrow)"/>
+  </g>
+
+  <g stroke="#5eead4" fill="none" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.35">
+    <path d="M 480 200 C 700 150 900 150 1020 380"/>
+    <path d="M 480 700 C 700 780 900 780 1020 520"/>
+  </g>
+
+  <g font-family="monospace" font-size="14" fill="#2dd4bf" fill-opacity="0.8" text-anchor="middle">
+    <rect x="80" y="420" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.7" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="110" y="456">src</text>
+
+    <rect x="420" y="170" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.2" stroke-opacity="0.6" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="450" y="206">tok</text>
+    <rect x="420" y="420" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.8" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="450" y="456">emb</text>
+    <rect x="420" y="670" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.2" stroke-opacity="0.6" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="450" y="706">pos</text>
+
+    <rect x="720" y="290" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.75" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="750" y="326">enc</text>
+    <rect x="720" y="550" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.75" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="750" y="586">dec</text>
+
+    <rect x="1020" y="420" width="60" height="60" rx="8" stroke="#5eead4" stroke-width="1.8" stroke-opacity="0.9" fill="#0a0f1a" fill-opacity="0.7"/>
+    <text x="1050" y="456" fill="#5eead4">agg</text>
+
+    <rect x="1360" y="250" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.2" stroke-opacity="0.6" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="1390" y="286">y1</text>
+    <rect x="1360" y="420" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.8" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="1390" y="456">y2</text>
+    <rect x="1360" y="590" width="60" height="60" rx="8" stroke="#2dd4bf" stroke-width="1.2" stroke-opacity="0.6" fill="#0a0f1a" fill-opacity="0.6"/>
+    <text x="1390" y="626">y3</text>
+  </g>
+
+  <g>
+    <circle cx="110" cy="450" r="45" fill="url(#nodeglow)" opacity="0.4"/>
+    <circle cx="450" cy="450" r="45" fill="url(#nodeglow)" opacity="0.4"/>
+    <circle cx="1050" cy="450" r="55" fill="url(#nodeglow)" opacity="0.55"/>
+    <circle cx="1390" cy="450" r="45" fill="url(#nodeglow)" opacity="0.4"/>
+  </g>
+
+  <g font-family="monospace" font-size="11" fill="#2dd4bf" fill-opacity="0.3">
+    <text x="220" y="120">[1,0,1,1,0]</text>
+    <text x="860" y="180">∑ w·x + b</text>
+    <text x="1180" y="750">softmax()</text>
+    <text x="620" y="800">∇L</text>
+    <text x="1200" y="120">argmax</text>
+  </g>
+</svg>
