@@ -95,7 +95,7 @@
       --bg-cases: url('bg-cases.svg');
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); background: var(--bg); color: var(--text-muted); line-height: 1.75; font-size: 16.5px; letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text-muted); line-height: 1.75; font-size: 16.5px; letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; position: relative; }
     @media (min-width: 1100px) { body { font-size: 17px; } }
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
     a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
@@ -196,10 +196,10 @@
     .btn svg { width: 16px; height: 16px; }
 
     /* ── AI BACKGROUND CANVAS ── */
-    #ai-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+    #ai-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; width: 100vw; height: 100vh; }
 
     /* ── FLOATING AI LABELS ── */
-    .ai-labels { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .ai-labels { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .ai-label {
       position: absolute;
       font-family: var(--font-mono);
@@ -243,7 +243,7 @@
     .sec-header.center .sec-desc { margin: 0 auto 50px; }
 
     /* ── TECH STACK ── */
-    #tech-stack { background: var(--bg-section); }
+    #tech-stack { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
     .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 60px; }
     .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .lang-name { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text); font-size: 15px; }
@@ -260,7 +260,7 @@
     .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
     /* ── PROJECTS ── */
-    #projects { background: var(--bg); }
+    #projects { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
     .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; gap: 20px; flex-wrap: wrap; }
 
     /* Category filter tabs */
@@ -292,7 +292,7 @@
     .repo-lang-dot { width: 8px; height: 8px; border-radius: 50%; }
 
     /* ── CASE STUDIES ── */
-    #case-studies { background: var(--bg-section); }
+    #case-studies { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
     .case-study { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; background: var(--bg-card); }
     .case-top { height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
     .case-header { padding: 40px 40px 0; }
@@ -317,7 +317,7 @@
     .live-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
     /* ── ABOUT ME ── */
-    #about-me { background: var(--bg); }
+    #about-me { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
     .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start; }
     .about-text p { margin-bottom: 16px; line-height: 1.8; }
     .about-text p strong { color: var(--text); }
@@ -330,7 +330,7 @@
     .about-detail-value { font-size: 15px; color: var(--text); font-weight: 500; }
 
     /* ── EXPERIENCE TIMELINE ── */
-    #experience { background: var(--bg-section); }
+    #experience { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
     .timeline { position: relative; padding-left: 32px; }
     .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--border), transparent); }
     .timeline-item { position: relative; padding-bottom: 40px; }
@@ -361,7 +361,7 @@
     .cert-issuer { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
 
     /* ── FEATURED ARTICLES ── */
-    #articles { background: var(--bg); }
+    #articles { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
     .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .article-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: all 0.3s; text-decoration: none; display: block; position: relative; overflow: hidden; }
     .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; }
@@ -373,7 +373,7 @@
     .article-read { font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--bg-section); text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
+    #contact { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
     #contact::before { content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(45,212,191,0.06) 0%, transparent 70%); transform: translate(-50%, -50%); }
     .contact-title { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; color: var(--text); margin-bottom: 20px; }
     .contact-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
@@ -465,6 +465,40 @@
   </style>
 </head>
 <body>
+  <!-- ── AI BACKGROUND (full page) ── -->
+  <canvas id="ai-bg" aria-hidden="true"></canvas>
+  <div class="ai-labels" aria-hidden="true">
+    <span class="ai-label provider" style="left:5%;top:8%;animation-duration:22s;animation-delay:0s">OpenAI</span>
+    <span class="ai-label model" style="left:82%;top:5%;animation-duration:26s;animation-delay:2s">GPT-4o</span>
+    <span class="ai-label provider" style="left:12%;top:18%;animation-duration:20s;animation-delay:1s">Anthropic</span>
+    <span class="ai-label model" style="left:70%;top:14%;animation-duration:24s;animation-delay:3s">Claude Opus</span>
+    <span class="ai-label provider" style="left:88%;top:25%;animation-duration:28s;animation-delay:0.5s">Google</span>
+    <span class="ai-label model" style="left:3%;top:32%;animation-duration:23s;animation-delay:4s">Gemini</span>
+    <span class="ai-label provider" style="left:55%;top:10%;animation-duration:21s;animation-delay:1.5s">Meta</span>
+    <span class="ai-label model" style="left:35%;top:22%;animation-duration:25s;animation-delay:2.5s">LLaMA 3</span>
+    <span class="ai-label provider" style="left:25%;top:40%;animation-duration:27s;animation-delay:3.5s">Mistral</span>
+    <span class="ai-label model" style="left:60%;top:30%;animation-duration:19s;animation-delay:1s">DeepSeek</span>
+    <span class="ai-label concept" style="left:42%;top:4%;animation-duration:30s;animation-delay:0s">RAG Pipeline</span>
+    <span class="ai-label concept" style="left:78%;top:35%;animation-duration:22s;animation-delay:4.5s">Multi-Agent</span>
+    <span class="ai-label concept" style="left:8%;top:48%;animation-duration:26s;animation-delay:2s">Autonomous AI</span>
+    <span class="ai-label flow" style="left:50%;top:16%;animation-duration:24s;animation-delay:1.5s">Orchestration</span>
+    <span class="ai-label flow" style="left:92%;top:55%;animation-duration:28s;animation-delay:3s">Tool Calling</span>
+    <span class="ai-label flow" style="left:18%;top:62%;animation-duration:21s;animation-delay:0.5s">MCP Protocol</span>
+    <span class="ai-label concept" style="left:65%;top:45%;animation-duration:25s;animation-delay:2s">Vector Search</span>
+    <span class="ai-label model" style="left:30%;top:55%;animation-duration:23s;animation-delay:5s">Qwen</span>
+    <span class="ai-label provider" style="left:75%;top:50%;animation-duration:20s;animation-delay:1s">Alibaba</span>
+    <span class="ai-label flow" style="left:45%;top:65%;animation-duration:27s;animation-delay:4s">Embeddings</span>
+    <span class="ai-label concept" style="left:8%;top:75%;animation-duration:22s;animation-delay:3s">Arabic NLP</span>
+    <span class="ai-label flow" style="left:58%;top:70%;animation-duration:26s;animation-delay:0s">Stateful Memory</span>
+    <span class="ai-label provider" style="left:20%;top:82%;animation-duration:24s;animation-delay:1.5s">Hugging Face</span>
+    <span class="ai-label model" style="left:85%;top:72%;animation-duration:21s;animation-delay:2.5s">GPT-4o-mini</span>
+    <span class="ai-label concept" style="left:40%;top:78%;animation-duration:28s;animation-delay:0.5s">Knowledge Graph</span>
+    <span class="ai-label flow" style="left:68%;top:85%;animation-duration:23s;animation-delay:3.5s">Semantic Search</span>
+    <span class="ai-label model" style="left:15%;top:88%;animation-duration:25s;animation-delay:1s">Claude Sonnet</span>
+    <span class="ai-label concept" style="left:52%;top:92%;animation-duration:20s;animation-delay:4s">Agentic Workflow</span>
+    <span class="ai-label flow" style="left:88%;top:90%;animation-duration:27s;animation-delay:2s">Fine-tuning</span>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ── NAV ── -->
@@ -487,31 +521,6 @@
 
   <!-- ── HERO ── -->
   <section id="hero">
-    <canvas id="ai-bg" aria-hidden="true"></canvas>
-    <div class="ai-labels" aria-hidden="true">
-      <span class="ai-label provider" style="left:5%;top:12%;animation-duration:22s;animation-delay:0s">OpenAI</span>
-      <span class="ai-label model" style="left:82%;top:8%;animation-duration:26s;animation-delay:2s">GPT-4o</span>
-      <span class="ai-label provider" style="left:15%;top:75%;animation-duration:20s;animation-delay:1s">Anthropic</span>
-      <span class="ai-label model" style="left:70%;top:68%;animation-duration:24s;animation-delay:3s">Claude Opus</span>
-      <span class="ai-label provider" style="left:88%;top:35%;animation-duration:28s;animation-delay:0.5s">Google</span>
-      <span class="ai-label model" style="left:3%;top:45%;animation-duration:23s;animation-delay:4s">Gemini</span>
-      <span class="ai-label provider" style="left:55%;top:15%;animation-duration:21s;animation-delay:1.5s">Meta</span>
-      <span class="ai-label model" style="left:35%;top:82%;animation-duration:25s;animation-delay:2.5s">LLaMA 3</span>
-      <span class="ai-label provider" style="left:25%;top:55%;animation-duration:27s;animation-delay:3.5s">Mistral</span>
-      <span class="ai-label model" style="left:60%;top:42%;animation-duration:19s;animation-delay:1s">DeepSeek</span>
-      <span class="ai-label concept" style="left:42%;top:6%;animation-duration:30s;animation-delay:0s">RAG Pipeline</span>
-      <span class="ai-label concept" style="left:78%;top:52%;animation-duration:22s;animation-delay:4.5s">Multi-Agent</span>
-      <span class="ai-label concept" style="left:10%;top:30%;animation-duration:26s;animation-delay:2s">Autonomous AI</span>
-      <span class="ai-label flow" style="left:50%;top:25%;animation-duration:24s;animation-delay:1.5s">Orchestration</span>
-      <span class="ai-label flow" style="left:90%;top:80%;animation-duration:28s;animation-delay:3s">Tool Calling</span>
-      <span class="ai-label flow" style="left:18%;top:62%;animation-duration:21s;animation-delay:0.5s">MCP Protocol</span>
-      <span class="ai-label concept" style="left:65%;top:88%;animation-duration:25s;animation-delay:2s">Vector Search</span>
-      <span class="ai-label model" style="left:30%;top:38%;animation-duration:23s;animation-delay:5s">Qwen</span>
-      <span class="ai-label provider" style="left:75%;top:22%;animation-duration:20s;animation-delay:1s">Alibaba</span>
-      <span class="ai-label flow" style="left:45%;top:72%;animation-duration:27s;animation-delay:4s">Embeddings</span>
-      <span class="ai-label concept" style="left:8%;top:88%;animation-duration:22s;animation-delay:3s">Arabic NLP</span>
-      <span class="ai-label flow" style="left:58%;top:55%;animation-duration:26s;animation-delay:0s">Stateful Memory</span>
-    </div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-photo-wrap anim">
@@ -1574,13 +1583,12 @@
           });
         }
 
-        hero.addEventListener('mousemove', function(e) {
-          var rect = hero.getBoundingClientRect();
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
+        document.addEventListener('mousemove', function(e) {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
           mouse.active = true;
         });
-        hero.addEventListener('mouseleave', function() {
+        document.addEventListener('mouseleave', function() {
           mouse.active = false;
         });
 
