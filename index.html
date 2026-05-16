@@ -171,10 +171,9 @@
     #hero::after {
       content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 40% 50% at 20% 50%, rgba(45,212,191,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 40% at 80% 30%, rgba(129,140,248,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 25% 35% at 60% 80%, rgba(244,114,182,0.04) 0%, transparent 70%),
-        linear-gradient(180deg, transparent 0%, transparent 85%, var(--bg) 100%);
+        radial-gradient(ellipse 40% 50% at 20% 50%, rgba(45,212,191,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 80% 30%, rgba(129,140,248,0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 25% 35% at 60% 80%, rgba(244,114,182,0.02) 0%, transparent 70%);
     }
     .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
     .hero-photo-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
@@ -243,7 +242,7 @@
     .sec-header.center .sec-desc { margin: 0 auto 50px; }
 
     /* ── TECH STACK ── */
-    #tech-stack { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
+    #tech-stack { background: rgba(13,18,25,0.75); backdrop-filter: blur(4px); }
     .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 60px; }
     .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .lang-name { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text); font-size: 15px; }
@@ -260,7 +259,7 @@
     .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
     /* ── PROJECTS ── */
-    #projects { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
+    #projects { background: rgba(10,15,26,0.75); backdrop-filter: blur(4px); }
     .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; gap: 20px; flex-wrap: wrap; }
 
     /* Category filter tabs */
@@ -278,7 +277,7 @@
     .cat-subdesc { font-size: 14px; color: var(--text-muted); margin-bottom: 22px; max-width: 760px; }
 
     .repo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .repo-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: all 0.3s; text-decoration: none; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .repo-card { background: rgba(17,24,39,0.85); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: all 0.3s; text-decoration: none; display: flex; flex-direction: column; position: relative; overflow: hidden; backdrop-filter: blur(4px); }
     .repo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity 0.3s; }
     .repo-card:hover { transform: translateY(-4px); border-color: var(--accent-glow); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
     .repo-card:hover::before { opacity: 1; }
@@ -292,8 +291,8 @@
     .repo-lang-dot { width: 8px; height: 8px; border-radius: 50%; }
 
     /* ── CASE STUDIES ── */
-    #case-studies { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
-    .case-study { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; background: var(--bg-card); }
+    #case-studies { background: rgba(13,18,25,0.75); backdrop-filter: blur(4px); }
+    .case-study { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; background: rgba(17,24,39,0.85); backdrop-filter: blur(4px); }
     .case-top { height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
     .case-header { padding: 40px 40px 0; }
     .case-category { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
@@ -310,18 +309,18 @@
 
     /* ── LIVE WORK ── */
     .live-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
-    .live-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; transition: all 0.3s; text-decoration: none; }
+    .live-card { background: rgba(17,24,39,0.85); border: 1px solid var(--border); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; transition: all 0.3s; text-decoration: none; backdrop-filter: blur(4px); }
     .live-card:hover { border-color: var(--accent-glow); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     .live-icon { width: 48px; height: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
     .live-name { font-weight: 600; color: var(--text); font-size: 16px; margin-bottom: 4px; }
     .live-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
     /* ── ABOUT ME ── */
-    #about-me { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
+    #about-me { background: rgba(10,15,26,0.75); backdrop-filter: blur(4px); }
     .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start; }
     .about-text p { margin-bottom: 16px; line-height: 1.8; }
     .about-text p strong { color: var(--text); }
-    .about-highlight { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+    .about-highlight { background: rgba(17,24,39,0.85); border: 1px solid var(--border); border-radius: 16px; padding: 32px; backdrop-filter: blur(4px); }
     .about-highlight h3 { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
     .about-detail { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
     .about-detail:last-child { border-bottom: none; }
@@ -330,7 +329,7 @@
     .about-detail-value { font-size: 15px; color: var(--text); font-weight: 500; }
 
     /* ── EXPERIENCE TIMELINE ── */
-    #experience { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); }
+    #experience { background: rgba(13,18,25,0.75); backdrop-filter: blur(4px); }
     .timeline { position: relative; padding-left: 32px; }
     .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--border), transparent); }
     .timeline-item { position: relative; padding-bottom: 40px; }
@@ -347,7 +346,7 @@
 
     /* ── EDUCATION & CERTS ── */
     .edu-certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-    .edu-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+    .edu-block { background: rgba(17,24,39,0.85); border: 1px solid var(--border); border-radius: 16px; padding: 32px; backdrop-filter: blur(4px); }
     .edu-block h3 { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
     .edu-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
     .edu-item:last-child { border-bottom: none; }
@@ -361,9 +360,9 @@
     .cert-issuer { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
 
     /* ── FEATURED ARTICLES ── */
-    #articles { background: rgba(10,15,26,0.92); backdrop-filter: blur(8px); }
+    #articles { background: rgba(10,15,26,0.75); backdrop-filter: blur(4px); }
     .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .article-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: all 0.3s; text-decoration: none; display: block; position: relative; overflow: hidden; }
+    .article-card { background: rgba(17,24,39,0.85); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: all 0.3s; text-decoration: none; display: block; position: relative; overflow: hidden; backdrop-filter: blur(4px); }
     .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; }
     .article-card:hover { transform: translateY(-4px); border-color: var(--accent-glow); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
     .article-card:hover::before { opacity: 1; }
@@ -373,7 +372,7 @@
     .article-read { font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
 
     /* ── CONTACT ── */
-    #contact { background: rgba(13,18,25,0.92); backdrop-filter: blur(8px); text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
+    #contact { background: rgba(13,18,25,0.75); backdrop-filter: blur(4px); text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
     #contact::before { content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(45,212,191,0.06) 0%, transparent 70%); transform: translate(-50%, -50%); }
     .contact-title { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; color: var(--text); margin-bottom: 20px; }
     .contact-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
@@ -497,6 +496,25 @@
     <span class="ai-label model" style="left:15%;top:88%;animation-duration:25s;animation-delay:1s">Claude Sonnet</span>
     <span class="ai-label concept" style="left:52%;top:92%;animation-duration:20s;animation-delay:4s">Agentic Workflow</span>
     <span class="ai-label flow" style="left:88%;top:90%;animation-duration:27s;animation-delay:2s">Fine-tuning</span>
+    <span class="ai-label model" style="left:10%;top:95%;animation-duration:24s;animation-delay:1.5s">GPT-5</span>
+    <span class="ai-label model" style="left:35%;top:95%;animation-duration:22s;animation-delay:3s">Claude Haiku</span>
+    <span class="ai-label model" style="left:60%;top:95%;animation-duration:26s;animation-delay:0.5s">GLM-4</span>
+    <span class="ai-label model" style="left:85%;top:95%;animation-duration:20s;animation-delay:2s">Kimi K2</span>
+    <span class="ai-label model" style="left:20%;top:3%;animation-duration:28s;animation-delay:4s">MiniMax</span>
+    <span class="ai-label model" style="left:48%;top:3%;animation-duration:23s;animation-delay:1s">Grok 3</span>
+    <span class="ai-label model" style="left:75%;top:3%;animation-duration:25s;animation-delay:3.5s">Command R</span>
+    <span class="ai-label model" style="left:92%;top:3%;animation-duration:21s;animation-delay:0s">Yi-Lightning</span>
+    <span class="ai-label model" style="left:5%;top:15%;animation-duration:27s;animation-delay:2.5s">DeepSeek R1</span>
+    <span class="ai-label model" style="left:95%;top:15%;animation-duration:24s;animation-delay:1.5s">LLaMA 4</span>
+    <span class="ai-label model" style="left:5%;top:50%;animation-duration:22s;animation-delay:4s">Gemini Ultra</span>
+    <span class="ai-label model" style="left:95%;top:45%;animation-duration:26s;animation-delay:0.5s">Qwen 2.5</span>
+    <span class="ai-label model" style="left:5%;top:70%;animation-duration:20s;animation-delay:3s">Mixtral</span>
+    <span class="ai-label model" style="left:95%;top:65%;animation-duration:28s;animation-delay:1s">Gemma</span>
+    <span class="ai-label provider" style="left:5%;top:85%;animation-duration:23s;animation-delay:2s">Moonshot</span>
+    <span class="ai-label provider" style="left:95%;top:80%;animation-duration:25s;animation-delay:4s">Zhipu AI</span>
+    <span class="ai-label provider" style="left:50%;top:95%;animation-duration:21s;animation-delay:1.5s">01.AI</span>
+    <span class="ai-label provider" style="left:30%;top:3%;animation-duration:27s;animation-delay:3s">Cohere</span>
+    <span class="ai-label provider" style="left:65%;top:3%;animation-duration:24s;animation-delay:0.5s">xAI</span>
   </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1514,7 +1532,7 @@
         var W, H;
         var nodes = [];
         var particles = [];
-        var NODE_COUNT = 60;
+        var NODE_COUNT = 90;
         var PARTICLE_COUNT = 30;
         var CONNECT_DIST = 200;
         var mouse = { x: -999, y: -999, active: false };
@@ -1529,13 +1547,50 @@
 
         /* AI node types with colors */
         var nodeTypes = [
+          /* OpenAI */
           { label: 'GPT-4o', color: [16,163,127] },
-          { label: 'Claude', color: [204,128,61] },
+          { label: 'GPT-5', color: [16,183,137] },
+          { label: 'GPT-4o-mini', color: [16,143,117] },
+          { label: 'o3', color: [16,163,127] },
+          { label: 'o4-mini', color: [16,153,127] },
+          /* Anthropic */
+          { label: 'Claude Opus', color: [204,128,61] },
+          { label: 'Claude Sonnet', color: [214,138,71] },
+          { label: 'Claude Haiku', color: [194,118,51] },
+          /* Google */
           { label: 'Gemini', color: [66,133,244] },
-          { label: 'LLaMA', color: [59,130,246] },
+          { label: 'Gemini Ultra', color: [76,143,254] },
+          { label: 'Gemma', color: [56,123,234] },
+          /* Meta */
+          { label: 'LLaMA 3', color: [59,130,246] },
+          { label: 'LLaMA 4', color: [69,140,255] },
+          /* DeepSeek */
           { label: 'DeepSeek', color: [45,212,191] },
+          { label: 'DeepSeek V3', color: [55,222,201] },
+          { label: 'DeepSeek R1', color: [35,202,181] },
+          /* Mistral */
           { label: 'Mistral', color: [255,128,0] },
+          { label: 'Mixtral', color: [255,148,20] },
+          /* Qwen / Alibaba */
           { label: 'Qwen', color: [139,92,246] },
+          { label: 'Qwen 2.5', color: [149,102,255] },
+          /* GLM / Zhipu */
+          { label: 'GLM-4', color: [56,189,248] },
+          { label: 'GLM-4V', color: [66,199,255] },
+          /* Moonshot */
+          { label: 'Kimi', color: [251,191,36] },
+          { label: 'Kimi K2', color: [255,201,46] },
+          /* MiniMax */
+          { label: 'MiniMax', color: [244,114,182] },
+          { label: 'MiniMax-01', color: [254,124,192] },
+          /* xAI */
+          { label: 'Grok', color: [239,68,68] },
+          { label: 'Grok 3', color: [249,78,78] },
+          /* Cohere */
+          { label: 'Command R', color: [34,211,238] },
+          /* Yi / 01.AI */
+          { label: 'Yi-Lightning', color: [250,204,21] },
+          /* AI Concepts */
           { label: 'RAG', color: [52,211,153] },
           { label: 'Agent', color: [251,191,36] },
           { label: 'Vector', color: [45,212,191] },
