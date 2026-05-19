@@ -233,18 +233,22 @@
 
     /* ── TECH STACK ── */
     #tech-stack { background: transparent; }
-    .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 60px; }
-    .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .lang-name { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text); font-size: 15px; }
-    .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .lang-pct { font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); }
-    .lang-bar { width: 100%; height: 6px; background: var(--bg-card); border-radius: 3px; overflow: hidden; }
-    .lang-fill { height: 100%; border-radius: 3px; transition: width 1.5s cubic-bezier(0.4,0,0.2,1); }
+    /* ── SKILL MATRIX RADAR ── */
+    .skill-matrix-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .skill-matrix-canvas { max-width: 420px; width: 100%; cursor: crosshair; }
+    .skill-matrix-legend { display: flex; flex-wrap: wrap; gap: 16px 28px; justify-content: center; }
+    .skill-matrix-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
+    .skill-matrix-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .skill-matrix-caption { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); text-align: center; }
+    .skill-matrix-tooltip { position: absolute; pointer-events: none; background: var(--bg-card); border: 1px solid var(--border-lt); border-radius: 8px; padding: 8px 14px; font-family: var(--font-mono); font-size: 13px; color: var(--text); white-space: nowrap; opacity: 0; transition: opacity 0.15s; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
 
     /* ── SKILLS GRID ── */
     .skills-section { margin-top: 60px; }
     .skills-section h3 { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
     .skills-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-subgroup { margin-bottom: 12px; }
+    .skill-subgroup:last-child { margin-bottom: 0; }
+    .skill-subgroup-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; opacity: 0.7; }
     .skill-pill { font-family: var(--font-mono); font-size: 12px; padding: 6px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); transition: all 0.2s; }
     .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
@@ -409,6 +413,11 @@
       .repo-card, .article-card, .case-study, .timeline-item, .about-highlight, .edu-block { border: 1px solid #ccc !important; page-break-inside: avoid; }
       .sec-title, .hero-name, .timeline-role, .repo-name, .article-title, .case-title, .contact-title { color: #000 !important; }
       .cat-group { display: block !important; }
+      #skill-radar { display: none !important; }
+      .skill-matrix-wrap { display: block !important; opacity: 1 !important; transform: none !important; }
+      .skill-matrix-legend { display: flex !important; }
+      .skill-matrix-caption { display: block !important; }
+      .skill-matrix-tooltip { display: none !important; }
       img { max-width: 200px; }
     }
 
@@ -772,10 +781,6 @@
             <div><div class="cert-name">Natural Language Processing on Google Cloud</div><div class="cert-issuer">Google &mdash; 2024</div></div>
           </div>
           <div class="cert-item">
-            <div class="cert-badge">MS</div>
-            <div><div class="cert-name">Career Essentials in Data Analysis</div><div class="cert-issuer">Microsoft &amp; LinkedIn &mdash; 2024</div></div>
-          </div>
-          <div class="cert-item">
             <div class="cert-badge">LI</div>
             <div><div class="cert-name">TensorFlow: Working with NLP</div><div class="cert-issuer">LinkedIn &mdash; 2024</div></div>
           </div>
@@ -851,37 +856,39 @@
         <p class="sec-desc">Languages and tools I use to build robust and scalable applications, based on my actual GitHub repository data.</p>
       </div>
 
-      <div class="lang-grid">
-        <div class="lang-item anim">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#2dd4bf"></span>Python</span><span class="lang-pct">72.7%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:72.7%;background:#2dd4bf"></div></div>
+      <div class="skill-matrix-wrap anim">
+        <canvas id="skill-radar" class="skill-matrix-canvas" width="840" height="840" aria-label="Radar chart showing language distribution by repository volume"></canvas>
+        <div class="skill-matrix-tooltip" id="radar-tooltip"></div>
+        <div class="skill-matrix-legend">
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#2dd4bf"></span>Python — 72.7%</div>
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#c084fc"></span>MQL5/MQL4 — 12.0%</div>
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#f472b6"></span>HTML — 9.1%</div>
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#fbbf24"></span>TypeScript — 3.2%</div>
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#fb923c"></span>JavaScript — 2.0%</div>
+          <div class="skill-matrix-legend-item"><span class="skill-matrix-legend-dot" style="background:#60a5fa"></span>SQL — 1.0%</div>
         </div>
-        <div class="lang-item anim anim-delay-1">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#c084fc"></span>MQL5 / MQL4</span><span class="lang-pct">12.0%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:12%;background:#c084fc"></div></div>
-        </div>
-        <div class="lang-item anim anim-delay-1">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#f472b6"></span>HTML</span><span class="lang-pct">9.1%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:9.1%;background:#f472b6"></div></div>
-        </div>
-        <div class="lang-item anim anim-delay-2">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#fbbf24"></span>TypeScript</span><span class="lang-pct">3.2%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:3.2%;background:#fbbf24"></div></div>
-        </div>
-        <div class="lang-item anim anim-delay-2">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#fb923c"></span>JavaScript</span><span class="lang-pct">2.0%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:2%;background:#fb923c"></div></div>
-        </div>
-        <div class="lang-item anim anim-delay-3">
-          <div class="lang-header"><span class="lang-name"><span class="lang-dot" style="background:#60a5fa"></span>SQL</span><span class="lang-pct">1.0%</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:1%;background:#60a5fa"></div></div>
-        </div>
+        <div class="skill-matrix-caption">Repo Volume — percentage of public repositories by primary language</div>
       </div>
 
       <div class="skills-section anim">
         <h3>AI &amp; LLM Systems</h3>
-        <div class="skills-pills">
-          <span class="skill-pill">GPT-4 / GPT-4o</span><span class="skill-pill">Claude API &amp; SDK</span><span class="skill-pill">Gemini</span><span class="skill-pill">DeepSeek</span><span class="skill-pill">Mistral</span><span class="skill-pill">LLaMA</span><span class="skill-pill">Qwen</span><span class="skill-pill">OpenAI API</span><span class="skill-pill">Anthropic API</span><span class="skill-pill">Hugging Face</span><span class="skill-pill">Ollama</span><span class="skill-pill">Prompt Engineering</span><span class="skill-pill">Conversational AI</span><span class="skill-pill">LLM Infrastructure</span>
+        <div class="skill-subgroup">
+          <div class="skill-subgroup-label">Models</div>
+          <div class="skills-pills">
+            <span class="skill-pill">GPT-4 / GPT-4o</span><span class="skill-pill">Claude</span><span class="skill-pill">Gemini</span><span class="skill-pill">DeepSeek</span><span class="skill-pill">Mistral</span><span class="skill-pill">LLaMA</span><span class="skill-pill">Qwen</span>
+          </div>
+        </div>
+        <div class="skill-subgroup">
+          <div class="skill-subgroup-label">Frameworks &amp; APIs</div>
+          <div class="skills-pills">
+            <span class="skill-pill">OpenAI API</span><span class="skill-pill">Anthropic API &amp; SDK</span><span class="skill-pill">Hugging Face</span><span class="skill-pill">Ollama</span>
+          </div>
+        </div>
+        <div class="skill-subgroup">
+          <div class="skill-subgroup-label">Concepts</div>
+          <div class="skills-pills">
+            <span class="skill-pill">Prompt Engineering</span><span class="skill-pill">Conversational AI</span><span class="skill-pill">LLM Infrastructure</span>
+          </div>
         </div>
       </div>
       <div class="skills-section anim">
@@ -957,35 +964,35 @@
             <div class="repo-name">Claude-Skills-Collection</div>
             <p class="repo-desc">102 Claude Code skills across 7 categories — trading strategies, Azure, VSCode extensions, AI prompts, and custom automation skills.</p>
             <div class="repo-tags"><span class="repo-tag">claude-skills</span><span class="repo-tag">ai-agents</span><span class="repo-tag">automation</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 2</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 2</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/TITAN-Market-Intelligence" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-1">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">TITAN-Market-Intelligence</div>
             <p class="repo-desc">138-module multi-analyst intelligence system — macro, cross-asset, geopolitical, alternative data analysts. FastAPI + multi-AI + ML + Telegram/email alerts.</p>
             <div class="repo-tags"><span class="repo-tag">multi-agent</span><span class="repo-tag">fastapi</span><span class="repo-tag">intelligence</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/Gold-MultiAgent-Analyzer" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-2">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">Gold-MultiAgent-Analyzer</div>
             <p class="repo-desc">Multi-agent XAUUSD analysis platform — chart, correlations, market structure, sentiment, risk, volume agents with GLM-5 AI.</p>
             <div class="repo-tags"><span class="repo-tag">multi-agent</span><span class="repo-tag">gold</span><span class="repo-tag">glm-5</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/Compass-AI" target="_blank" rel="noopener noreferrer" class="repo-card anim">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">Compass-AI</div>
             <p class="repo-desc">Multi-provider AI orchestration gateway routing across OpenAI, Anthropic Claude, and Google Gemini with a unified API and failover.</p>
             <div class="repo-tags"><span class="repo-tag">llm-gateway</span><span class="repo-tag">orchestration</span><span class="repo-tag">failover</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Apr 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/opencode-multiagent-studio" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-1">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">opencode-multiagent-studio</div>
             <p class="repo-desc">TypeScript studio for composing and running opencode multi-agent workflows with visual orchestration and runtime controls.</p>
             <div class="repo-tags"><span class="repo-tag">typescript</span><span class="repo-tag">multi-agent</span><span class="repo-tag">studio</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#fbbf24"></span>TypeScript</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#fbbf24"></span>TypeScript</span><span class="repo-meta-item">Apr 2026</span></div>
           </a>
         </div>
       </div>
@@ -1000,42 +1007,42 @@
             <div class="repo-name">IFC-Trading-System</div>
             <p class="repo-desc">11-layer institutional flow confluence system — intermarket, volume profile, liquidity, order flow, sentiment, LLM evaluation. 14-page Dash dashboard + execution engine.</p>
             <div class="repo-tags"><span class="repo-tag">institutional</span><span class="repo-tag">smart-money</span><span class="repo-tag">mt5</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/MultiStrategy-Trader-Pro" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-1">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">MultiStrategy-Trader-Pro</div>
             <p class="repo-desc">19-strategy MT5 trading system across Gold, NAS100, US30, US500, Crypto. Real-time Dash dashboard, alerts, journal, risk management.</p>
             <div class="repo-tags"><span class="repo-tag">multi-strategy</span><span class="repo-tag">risk-mgmt</span><span class="repo-tag">dash</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/OrderFlow-Analysis-Pro" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-2">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">OrderFlow-Analysis-Pro</div>
             <p class="repo-desc">Order flow analysis with Bybit + MT5 feeds — footprint charts, delta analytics, volume profile, pattern detection, Dash dashboard with WebSocket.</p>
             <div class="repo-tags"><span class="repo-tag">order-flow</span><span class="repo-tag">bybit</span><span class="repo-tag">websocket</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">★ 1</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/OrderFlow-Scalper" target="_blank" rel="noopener noreferrer" class="repo-card anim">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">OrderFlow-Scalper</div>
             <p class="repo-desc">3-thread order flow scalper for MT5 — footprint charts, delta analysis, key levels, auto-execution.</p>
             <div class="repo-tags"><span class="repo-tag">scalping</span><span class="repo-tag">mt5</span><span class="repo-tag">order-flow</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/Claude-Agent-Trader" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-1">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">Claude-Agent-Trader</div>
             <p class="repo-desc">Claude Agent SDK-based trading system — Claude AI analyzes ICT/SMC patterns, auto-executes trades via MT5 MCP server.</p>
             <div class="repo-tags"><span class="repo-tag">claude-sdk</span><span class="repo-tag">mcp</span><span class="repo-tag">ict-smc</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/Edge-Extractor-ML" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-2">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
             <div class="repo-name">Edge-Extractor-ML</div>
             <p class="repo-desc">ML-based edge extraction framework for MT5 — mean reversion, pairs, volatility edges. Walk-forward + bootstrap validation. HTML reports.</p>
             <div class="repo-tags"><span class="repo-tag">machine-learning</span><span class="repo-tag">backtesting</span><span class="repo-tag">walk-forward</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#2dd4bf"></span>Python</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
         </div>
       </div>
@@ -1086,7 +1093,7 @@
             <div class="repo-name">Chess-Move-Advisor</div>
             <p class="repo-desc">Chrome/Edge extension — Stockfish WASM engine, auto-detects boards on Chess.com/Lichess/Chess24, draws best-move arrows in real-time.</p>
             <div class="repo-tags"><span class="repo-tag">browser-extension</span><span class="repo-tag">stockfish</span><span class="repo-tag">wasm</span></div>
-            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#fb923c"></span>JavaScript</span><span class="repo-meta-item">2026</span></div>
+            <div class="repo-meta"><span class="repo-meta-item"><span class="repo-lang-dot" style="background:#fb923c"></span>JavaScript</span><span class="repo-meta-item">Mar 2026</span></div>
           </a>
           <a href="https://github.com/mahmoud20138/A-star-search-master" target="_blank" rel="noopener noreferrer" class="repo-card anim anim-delay-1">
             <div class="repo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
@@ -1532,6 +1539,192 @@
       });
     });
 
+
+    /* ── Skill Matrix Radar Chart ── */
+    (function() {
+      var canvas = document.getElementById('skill-radar');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var tooltip = document.getElementById('radar-tooltip');
+      var W = canvas.width, H = canvas.height;
+      var cx = W / 2, cy = H / 2;
+      var R = Math.min(W, H) * 0.38;
+
+      var data = [
+        { label: 'Python',     value: 72.7, color: [45,212,191]  },
+        { label: 'MQL5/MQL4',  value: 12.0, color: [192,132,252] },
+        { label: 'HTML',       value: 9.1,  color: [244,114,182] },
+        { label: 'TypeScript', value: 3.2,  color: [251,191,36]  },
+        { label: 'JavaScript', value: 2.0,  color: [251,146,60]  },
+        { label: 'SQL',        value: 1.0,  color: [96,165,250]  }
+      ];
+      var n = data.length;
+
+      /* Animated reveal */
+      var progress = 0;
+      var animStart = null;
+      var hovered = -1;
+
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function drawRadar(ts) {
+        if (!animStart) animStart = ts;
+        progress = Math.min(1, (ts - animStart) / 1200);
+        var p = easeOut(progress);
+
+        ctx.clearRect(0, 0, W, H);
+
+        /* Grid rings */
+        for (var ring = 1; ring <= 5; ring++) {
+          var r = R * ring / 5;
+          ctx.beginPath();
+          for (var i = 0; i <= n; i++) {
+            var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+            var x = cx + Math.cos(angle) * r;
+            var y = cy + Math.sin(angle) * r;
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.strokeStyle = 'rgba(148,163,184,0.08)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        /* Axis lines + labels */
+        for (var i = 0; i < n; i++) {
+          var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+          var x = cx + Math.cos(angle) * R;
+          var y = cy + Math.sin(angle) * R;
+
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(x, y);
+          ctx.strokeStyle = 'rgba(148,163,184,0.12)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          /* Label */
+          var lx = cx + Math.cos(angle) * (R + 28);
+          var ly = cy + Math.sin(angle) * (R + 28);
+          ctx.font = '600 13px Inter, sans-serif';
+          ctx.fillStyle = hovered === i ? '#e2e8f0' : '#94a3b8';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          if (Math.abs(Math.cos(angle)) < 0.1) {
+            ctx.textAlign = 'center';
+            ly += Math.sin(angle) > 0 ? 8 : -8;
+          } else if (Math.cos(angle) > 0.5) {
+            ctx.textAlign = 'left';
+          } else if (Math.cos(angle) < -0.5) {
+            ctx.textAlign = 'right';
+          }
+          ctx.fillText(data[i].label, lx, ly);
+        }
+
+        /* Data polygon */
+        ctx.beginPath();
+        for (var i = 0; i <= n; i++) {
+          var idx = i % n;
+          var angle = (Math.PI * 2 / n) * idx - Math.PI / 2;
+          var val = (data[idx].value / 100) * R * p;
+          var x = cx + Math.cos(angle) * val;
+          var y = cy + Math.sin(angle) * val;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(45,212,191,0.12)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(45,212,191,0.6)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        /* Data dots */
+        for (var i = 0; i < n; i++) {
+          var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+          var val = (data[i].value / 100) * R * p;
+          var x = cx + Math.cos(angle) * val;
+          var y = cy + Math.sin(angle) * val;
+          var c = data[i].color;
+
+          /* Glow */
+          ctx.beginPath();
+          ctx.arc(x, y, hovered === i ? 10 : 6, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',0.25)';
+          ctx.fill();
+
+          /* Dot */
+          ctx.beginPath();
+          ctx.arc(x, y, hovered === i ? 5 : 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+          ctx.fill();
+
+          /* Value label when hovered */
+          if (hovered === i) {
+            ctx.font = '700 14px JetBrains Mono, monospace';
+            ctx.fillStyle = '#e2e8f0';
+            ctx.textAlign = 'center';
+            ctx.fillText(data[i].value + '%', x, y - 16);
+          }
+        }
+
+        /* Center label */
+        ctx.font = '500 11px JetBrains Mono, monospace';
+        ctx.fillStyle = 'rgba(148,163,184,0.4)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('REPO VOLUME', cx, cy);
+
+        if (progress < 1) requestAnimationFrame(drawRadar);
+      }
+      requestAnimationFrame(drawRadar);
+
+      /* Hover detection */
+      canvas.addEventListener('mousemove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        var scaleX = W / rect.width;
+        var scaleY = H / rect.height;
+        var mx = (e.clientX - rect.left) * scaleX;
+        var my = (e.clientY - rect.top) * scaleY;
+
+        var newHovered = -1;
+        for (var i = 0; i < n; i++) {
+          var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+          var val = (data[i].value / 100) * R;
+          var x = cx + Math.cos(angle) * val;
+          var y = cy + Math.sin(angle) * val;
+          var dist = Math.sqrt(Math.pow(mx - x, 2) + Math.pow(my - y, 2));
+          if (dist < 20) { newHovered = i; break; }
+        }
+
+        if (newHovered !== hovered) {
+          hovered = newHovered;
+          animStart = null;
+          progress = 0;
+          requestAnimationFrame(drawRadar);
+
+          if (hovered >= 0) {
+            tooltip.textContent = data[hovered].label + ': ' + data[hovered].value + '% of repos';
+            tooltip.style.opacity = '1';
+          } else {
+            tooltip.style.opacity = '0';
+          }
+        }
+
+        if (hovered >= 0) {
+          tooltip.style.left = (e.clientX + 14) + 'px';
+          tooltip.style.top = (e.clientY - 40) + 'px';
+        }
+      });
+
+      canvas.addEventListener('mouseleave', function() {
+        hovered = -1;
+        animStart = null;
+        progress = 0;
+        requestAnimationFrame(drawRadar);
+        tooltip.style.opacity = '0';
+      });
+    })();
+
     /* ── AI Ambient Canvas Background ── */
     if (!reduceMotion) {
       var canvas = document.getElementById('ai-bg');
@@ -1540,7 +1733,7 @@
         var W = window.innerWidth;
         var H = window.innerHeight;
         var particles = [];
-        var PARTICLE_COUNT = 100;
+        var PARTICLE_COUNT = (W < 768) ? 40 : 100;
         var mouse = { x: -999, y: -999, active: false };
 
         canvas.width = W;
@@ -1680,9 +1873,18 @@
             }
           }
 
-          requestAnimationFrame(draw);
+          draw._raf = requestAnimationFrame(draw);
         }
         draw();
+
+        /* Pause animation when tab is hidden */
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) {
+            cancelAnimationFrame(draw._raf);
+          } else {
+            draw();
+          }
+        });
       }
     }
   })();
