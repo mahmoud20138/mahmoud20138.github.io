@@ -35,6 +35,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mahmoud Ali — AI / NLP Solution Architect | Autonomous AI Systems Engineer" />
   <meta name="twitter:description" content="10+ years designing enterprise AI systems, multi-agent architectures, RAG pipelines, and production LLM infrastructures." />
+  <meta name="twitter:site" content="@mahmoud_abdou2002" />
   <meta name="twitter:image" content="https://mahmoud20138.github.io/og-card.jpg" />
   <meta name="twitter:image:alt" content="Mahmoud Ali — NLP Engineer & AI Agents Architect" />
 
@@ -52,9 +53,12 @@
     "image": "https://mahmoud20138.github.io/profile.jpg",
     "jobTitle": "AI / NLP Solution Architect | Autonomous AI Systems Engineer | Multi-Agent AI Architect",
     "description": "Senior AI / NLP Solution Architect with 10+ years designing enterprise AI systems, autonomous agent architectures, RAG pipelines, Arabic NLP platforms, and production-grade LLM infrastructures.",
-    "email": "mailto:mahmoud.abdou2002@gmail.com",
+    "email": "mahmoud.abdou2002@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "Egypt" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Alexandria University" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of Bridgeport" },
+      { "@type": "CollegeOrUniversity", "name": "Alexandria University" }
+    ],
     "knowsAbout": ["Large Language Models", "Retrieval-Augmented Generation", "Multi-Agent AI Systems", "Autonomous AI Systems", "AI Orchestration Platforms", "Arabic NLP & Dialect Adaptation", "Conversational AI Systems", "Machine Learning", "Computational Linguistics", "Algorithmic Trading", "Model Context Protocol", "RAG Pipelines", "Vector Databases", "AI Memory Architectures"],
     "sameAs": [
       "https://github.com/mahmoud20138",
@@ -368,6 +372,7 @@
     .anim-delay-1 { transition-delay: 0.1s; }
     .anim-delay-2 { transition-delay: 0.2s; }
     .anim-delay-3 { transition-delay: 0.3s; }
+    .anim-delay-4 { transition-delay: 0.4s; }
 
     /* Respect reduced-motion: disable scroll-smooth, animations, and pulses */
     @media (prefers-reduced-motion: reduce) {
@@ -384,7 +389,8 @@
     /* ── PRINT ── */
     @media print {
       *, *::before, *::after { background: #fff !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
-      nav, .nav-toggle, .skip-link, .cat-tabs, .hero-buttons, #contact, footer .footer-socials, .anim { display: none !important; }
+      nav, .nav-toggle, .skip-link, .cat-tabs, .hero-buttons, #contact, footer .footer-socials { display: none !important; }
+      .anim { opacity: 1 !important; transform: none !important; }
       section { padding: 20px 0 !important; page-break-inside: avoid; }
       .container { max-width: 100% !important; padding: 0 !important; }
       a { color: #000 !important; text-decoration: underline !important; }
@@ -411,7 +417,6 @@
       .hero-location { justify-content: center; }
       .hero-buttons { justify-content: center; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-      .lang-grid { grid-template-columns: 1fr; }
       .repo-grid { grid-template-columns: 1fr 1fr; }
       .case-columns { grid-template-columns: 1fr; gap: 24px; }
       .live-grid { grid-template-columns: 1fr; }
@@ -437,6 +442,7 @@
       .nav-links a { padding: 14px 4px; border-bottom: 1px solid var(--border); font-size: 14px; }
       .nav-links a:last-child { border-bottom: none; }
       .repo-grid { grid-template-columns: 1fr; }
+      .more-grid { grid-template-columns: 1fr; }
       .cat-tabs { flex-wrap: wrap; gap: 8px; }
       .cat-tab { font-size: 11px; padding: 6px 12px; }
     }
@@ -557,7 +563,7 @@
         </div>
         <div class="stat-item anim anim-delay-1">
           <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div>
-          <div class="stat-value">30</div>
+          <div class="stat-value">32+</div>
           <div class="stat-label">Public Repos</div>
         </div>
         <div class="stat-item anim anim-delay-2">
@@ -1162,7 +1168,7 @@
           <h3 class="case-title">138-Module Multi-Agent Intelligence Platform</h3>
         </div>
         <div class="case-body" style="padding-bottom:16px">
-          <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
+          <svg role="img" aria-label="138-Module Multi-Agent Intelligence Platform architecture diagram showing event sources, WebSocket layer, event pipeline, AI orchestrator, 5 specialist agents, sub-agents, stateful memory, conflict resolution, and LLM providers" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
             <defs>
               <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2dd4bf" opacity="0.7"/></marker>
               <marker id="arrowGold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#fbbf24" opacity="0.7"/></marker>
@@ -1272,9 +1278,10 @@
           <h3 class="case-title">Enterprise RAG Pipeline Architecture</h3>
         </div>
         <div class="case-body" style="padding-bottom:16px">
-          <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
+          <svg role="img" aria-label="Enterprise RAG Pipeline Architecture diagram showing document sources, embedding pipeline, chunking, vector database, query flow, retrieval, context assembly, and LLM reasoning pipeline" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
             <defs>
               <marker id="arrowTeal2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2dd4bf" opacity="0.7"/></marker>
+              <marker id="arrowGold2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#fbbf24" opacity="0.7"/></marker>
               <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c084fc" opacity="0.7"/></marker>
             </defs>
             <!-- Document Sources -->
@@ -1317,7 +1324,7 @@
             <text x="495" y="233" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Hybrid Retrieval (BM25 + Dense)</text>
             <text x="495" y="248" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Context-Aware Reranking</text>
             <line x1="370" y1="215" x2="406" y2="215" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arrowTeal2)" opacity="0.6"/>
-            <line x1="630" y1="120" x2="530" y2="168" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrowGold)" opacity="0.4"/>
+            <line x1="630" y1="120" x2="530" y2="168" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrowGold2)" opacity="0.4"/>
             <!-- Context Assembly -->
             <rect x="620" y="180" width="150" height="70" rx="8" fill="rgba(45,212,191,0.08)" stroke="#2dd4bf" stroke-width="1" opacity="0.8"/>
             <text x="695" y="208" text-anchor="middle" fill="#2dd4bf" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">CONTEXT</text>
@@ -1344,10 +1351,13 @@
           <h3 class="case-title">Autonomous LLM Trading Agent</h3>
         </div>
         <div class="case-body" style="padding-bottom:16px">
-          <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
+          <svg role="img" aria-label="Autonomous LLM Trading Agent architecture diagram showing market data feeds, MCP tools, LLM brain, decision engine, risk management layer, trade execution, AI validation, monitoring, and memory feedback loop" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
             <defs>
               <marker id="arrowTeal3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2dd4bf" opacity="0.7"/></marker>
+              <marker id="arrowGold3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#fbbf24" opacity="0.7"/></marker>
+              <marker id="arrowPurple3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c084fc" opacity="0.7"/></marker>
               <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#f87171" opacity="0.7"/></marker>
+              <filter id="glow3"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
             <!-- Market Data -->
             <rect x="20" y="30" width="140" height="60" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1" opacity="0.8"/>
@@ -1359,9 +1369,9 @@
             <text x="280" y="62" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Native Tool Calling</text>
             <text x="280" y="77" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Multi-Timeframe Analysis</text>
             <text x="280" y="90" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono,monospace" font-size="7">Price · Volume · OI · Sentiment</text>
-            <line x1="160" y1="60" x2="196" y2="60" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrowGold)" opacity="0.6"/>
+            <line x1="160" y1="60" x2="196" y2="60" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrowGold3)" opacity="0.6"/>
             <!-- LLM Brain -->
-            <rect x="400" y="10" width="200" height="100" rx="12" fill="rgba(192,132,252,0.1)" stroke="#c084fc" stroke-width="2" filter="url(#glow)"/>
+            <rect x="400" y="10" width="200" height="100" rx="12" fill="rgba(192,132,252,0.1)" stroke="#c084fc" stroke-width="2" filter="url(#glow3)"/>
             <text x="500" y="40" text-anchor="middle" fill="#c084fc" font-family="JetBrains Mono,monospace" font-size="12" font-weight="700">LLM BRAIN</text>
             <text x="500" y="58" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Structured Reasoning</text>
             <text x="500" y="73" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">ICT / SMC Pattern Analysis</text>
@@ -1374,7 +1384,7 @@
             <text x="760" y="65" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">BUY / SELL / HOLD Signal</text>
             <text x="760" y="80" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Entry · SL · TP · Position Size</text>
             <text x="760" y="93" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono,monospace" font-size="7">Confidence Score + Reasoning Chain</text>
-            <line x1="600" y1="60" x2="636" y2="60" stroke="#c084fc" stroke-width="1.5" marker-end="url(#arrowPurple)" opacity="0.6"/>
+            <line x1="600" y1="60" x2="636" y2="60" stroke="#c084fc" stroke-width="1.5" marker-end="url(#arrowPurple3)" opacity="0.6"/>
             <!-- Risk Management Layer -->
             <rect x="40" y="150" width="820" height="55" rx="8" fill="rgba(248,113,113,0.06)" stroke="#f87171" stroke-width="1" opacity="0.7"/>
             <text x="450" y="173" text-anchor="middle" fill="#f87171" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">RISK MANAGEMENT LAYER</text>
@@ -1389,7 +1399,7 @@
             <rect x="280" y="240" width="200" height="65" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1" opacity="0.8"/>
             <text x="380" y="268" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">AI VALIDATION</text>
             <text x="380" y="285" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Pre-Trade Sanity Check</text>
-            <line x1="280" y1="272" x2="240" y2="272" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrowGold)" opacity="0.5"/>
+            <line x1="280" y1="272" x2="240" y2="272" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrowGold3)" opacity="0.5"/>
             <!-- Monitoring -->
             <rect x="520" y="240" width="180" height="65" rx="8" fill="rgba(45,212,191,0.08)" stroke="#2dd4bf" stroke-width="1" opacity="0.8"/>
             <text x="610" y="268" text-anchor="middle" fill="#2dd4bf" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">MONITORING</text>
@@ -1399,9 +1409,9 @@
             <text x="805" y="268" text-anchor="middle" fill="#c084fc" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">MEMORY</text>
             <text x="805" y="285" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono,monospace" font-size="8">Trade Journal · Learning</text>
             <line x1="610" y1="305" x2="805" y2="305" stroke="#c084fc" stroke-width="1" opacity="0.3"/>
-            <line x1="805" y1="240" x2="805" y2="210" stroke="#c084fc" stroke-width="1" marker-end="url(#arrowPurple)" opacity="0.3"/>
+            <line x1="805" y1="240" x2="805" y2="210" stroke="#c084fc" stroke-width="1" marker-end="url(#arrowPurple3)" opacity="0.3"/>
             <!-- Feedback loop arrow back to LLM -->
-            <path d="M 805 240 Q 850 120 600 60" fill="none" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowPurple)" opacity="0.3"/>
+            <path d="M 805 240 Q 850 120 600 60" fill="none" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowPurple3)" opacity="0.3"/>
             <!-- Position Size Badge -->
             <rect x="50" y="340" width="800" height="40" rx="20" fill="rgba(45,212,191,0.06)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
             <text x="450" y="365" text-anchor="middle" fill="#2dd4bf" font-family="JetBrains Mono,monospace" font-size="10" font-weight="600">FULLY AUTONOMOUS LOOP: Market Data → LLM Analysis → Risk Validation → Execution → Monitoring → Memory → LLM</text>
@@ -1420,7 +1430,7 @@
           <h3 class="case-title">Supervisor → Planner → Executor Agent Framework</h3>
         </div>
         <div class="case-body" style="padding-bottom:16px">
-          <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
+          <svg role="img" aria-label="Supervisor-Planner-Executor Agent Framework diagram showing user goal routing through supervisor agent to planner and analyst agents, then to executor agent with 34 tools across core, plugin, MCP, and RAG knowledge categories" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(0,0,0,0.3);border-radius:12px;border:1px solid rgba(30,41,59,0.5)">
             <defs>
               <marker id="arrowTeal4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2dd4bf" opacity="0.7"/></marker>
               <marker id="arrowPurple4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c084fc" opacity="0.7"/></marker>
@@ -1667,8 +1677,8 @@
 
       <!-- ── 06. TESTIMONIALS ── -->
       <section id="testimonials">
-        <div class="section-header">
-          <div class="sec-num">06.</div>
+        <div class="sec-header">
+          <div class="sec-num">07.</div>
           <h2 class="sec-title">What Colleagues Say</h2>
           <div class="sec-line"></div>
         </div>
@@ -1701,9 +1711,10 @@
       </section>
 
   <!-- ── LIVE PLATFORMS ── -->
+  <section id="live-platforms">
     <div class="container">
       <div class="sec-header center anim">
-        <div class="sec-num">06.</div>
+        <div class="sec-num">08.</div>
         <h2 class="sec-title">YouTube &amp; Videos</h2>
         <div class="sec-line"></div>
         <p class="sec-desc">AI systems, autonomous agents, and trading content on OVERRIDE_AI.</p>
@@ -2283,10 +2294,10 @@
   </script>
 
   <!-- Certifications Modal -->
-  <div class="cert-modal-overlay" id="certModal">
+  <div class="cert-modal-overlay" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
     <div class="cert-modal">
       <div class="cert-modal-header">
-        <span class="cert-modal-title">All Certifications</span>
+        <span class="cert-modal-title" id="certModalTitle">All Certifications</span>
         <button class="cert-modal-close" onclick="document.getElementById('certModal').classList.remove('open')" aria-label="Close">&times;</button>
       </div>
       <div class="cert-modal-body">
