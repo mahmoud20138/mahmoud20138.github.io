@@ -207,7 +207,7 @@
 
     /* -- SECTION HEADERS -- */
     .sec-num { font-family: var(--font-mono); font-size: 16px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
-    .sec-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--text); margin-bottom: 8px; background: linear-gradient(135deg, #f5f0e8 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sec-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--text); margin-bottom: 8px; }
     .sec-line { width: 60px; height: 3px; background: var(--accent); border-radius: 2px; margin-top: 12px; margin-bottom: 16px; }
     .sec-desc { color: var(--text-muted); max-width: 600px; margin-bottom: 50px; }
     .sec-header { margin-bottom: 60px; }
@@ -2225,177 +2225,152 @@
     })();
 
 
-    /* -- Elegant Gold Node Network Background -- */
-        if (!reduceMotion) {
-          var canvas = document.getElementById('ai-bg');
-          if (canvas) {
-            var ctx = canvas.getContext('2d');
-            var W, H, nodes = [], edges = [], particles = [];
-            var mouse = { x: -999, y: -999, active: false };
-            var NODE_COUNT = 45;
-            var EDGE_DIST = 220;
-            var GOLD = ['rgba(212,175,55,', 'rgba(240,208,96,');
+    /* -- Interactive Binary Rain Background -- */
+    if (!reduceMotion) {
+      var canvas = document.getElementById('ai-bg');
+      if (canvas) {
+        var ctx = canvas.getContext('2d');
+        var W = window.innerWidth;
+        var H = window.innerHeight;
+        var mouse = { x: -999, y: -999, active: false };
+        var GOLD = [255, 215, 0];
+        var TEAL = [45, 212, 191];
+        var COLS, drops, fontSize;
 
-            function resize() {
-              W = window.innerWidth;
-              H = window.innerHeight;
-              canvas.width = W;
-              canvas.height = H;
-              initScene();
-            }
-
-            function initScene() {
-              nodes = []; particles = [];
-              for (var i = 0; i < NODE_COUNT; i++) {
-                nodes.push({
-                  x: Math.random() * W,
-                  y: Math.random() * H,
-                  vx: (Math.random() - 0.5) * 0.3,
-                  vy: (Math.random() - 0.5) * 0.3,
-                  r: Math.random() * 2.5 + 1.5,
-                  phase: Math.random() * Math.PI * 2
-                });
-              }
-              for (var i = 0; i < 30; i++) {
-                particles.push({
-                  x: Math.random() * W,
-                  y: Math.random() * H,
-                  vx: (Math.random() - 0.5) * 0.15,
-                  vy: -(Math.random() * 0.25 + 0.05),
-                  life: Math.random(),
-                  size: Math.random() * 1.5 + 0.5
-                });
-              }
-            }
-
-            resize();
-            window.addEventListener('resize', resize);
-
-            document.addEventListener('mousemove', function(e) {
-              mouse.x = e.clientX;
-              mouse.y = e.clientY;
-              mouse.active = true;
-            });
-            document.addEventListener('mouseleave', function() { mouse.active = false; });
-
-            function draw() {
-              ctx.clearRect(0, 0, W, H);
-
-              /* Update nodes */
-              for (var i = 0; i < nodes.length; i++) {
-                var n = nodes[i];
-                n.x += n.vx;
-                n.y += n.vy;
-                n.phase += 0.008;
-                if (n.x < 0 || n.x > W) n.vx *= -1;
-                if (n.y < 0 || n.y > H) n.vy *= -1;
-              }
-
-              /* Draw edges (closest pairs only) */
-              for (var i = 0; i < nodes.length; i++) {
-                for (var j = i + 1; j < nodes.length; j++) {
-                  var dx = nodes[i].x - nodes[j].x;
-                  var dy = nodes[i].y - nodes[j].y;
-                  var dist = Math.sqrt(dx * dx + dy * dy);
-                  if (dist < EDGE_DIST) {
-                    var alpha = (1 - dist / EDGE_DIST) * 0.25;
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = GOLD[0] + alpha + ')';
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                  }
-                }
-              }
-
-              /* Draw nodes */
-              for (var i = 0; i < nodes.length; i++) {
-                var n = nodes[i];
-                var pulse = Math.sin(n.phase) * 0.35 + 0.65;
-                var a = pulse * 0.5;
-                var r = n.r * pulse;
-
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = GOLD[0] + a + ')';
-                ctx.fill();
-
-                /* Glow on larger nodes */
-                if (n.r > 2.5) {
-                  var ga = pulse * 0.15;
-                  ctx.beginPath();
-                  ctx.arc(n.x, n.y, r * 4, 0, Math.PI * 2);
-                  ctx.fillStyle = GOLD[0] + ga + ')';
-                  ctx.fill();
-                }
-              }
-
-              /* Draw floating particles */
-              for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life += 0.004;
-
-                if (p.life > 1 || p.y < -10 || p.x < -10 || p.x > W + 10) {
-                  p.x = Math.random() * W;
-                  p.y = H + 10;
-                  p.life = 0;
-                  p.size = Math.random() * 1.5 + 0.5;
-                  p.vy = -(Math.random() * 0.25 + 0.05);
-                }
-
-                var pa = (1 - p.life) * 0.4;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = GOLD[0] + pa + ')';
-                ctx.fill();
-              }
-
-              /* Mouse interaction - golden glow */
-              if (mouse.active) {
-                var grd = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 300);
-                grd.addColorStop(0, 'rgba(212,175,55,0.12)');
-                grd.addColorStop(0.3, 'rgba(212,175,55,0.05)');
-                grd.addColorStop(0.7, 'rgba(212,175,55,0.015)');
-                grd.addColorStop(1, 'rgba(212,175,55,0)');
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 300, 0, Math.PI * 2);
-                ctx.fillStyle = grd;
-                ctx.fill();
-
-                /* Connect nearby nodes to mouse */
-                for (var i = 0; i < nodes.length; i++) {
-                  var dx = mouse.x - nodes[i].x;
-                  var dy = mouse.y - nodes[i].y;
-                  var dist = Math.sqrt(dx * dx + dy * dy);
-                  if (dist < 200) {
-                    var a = (1 - dist / 200) * 0.35;
-                    ctx.beginPath();
-                    ctx.moveTo(mouse.x, mouse.y);
-                    ctx.lineTo(nodes[i].x, nodes[i].y);
-                    ctx.strokeStyle = GOLD[0] + a + ')';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                  }
-                }
-              }
-
-              draw._raf = requestAnimationFrame(draw);
-            }
-            draw();
-
-            document.addEventListener('visibilitychange', function() {
-              if (document.hidden) {
-                cancelAnimationFrame(draw._raf);
-              } else {
-                draw();
-              }
+        function initRain() {
+          W = window.innerWidth;
+          H = window.innerHeight;
+          canvas.width = W;
+          canvas.height = H;
+          fontSize = (W < 768) ? 12 : 14;
+          COLS = Math.floor(W / fontSize);
+          var TOTAL = COLS * 6; /* 6 numbers per column */
+          drops = [];
+          for (var i = 0; i < TOTAL; i++) {
+            drops.push({
+              x: Math.random() * W,
+              y: Math.random() * H * 1.5 - H * 0.5,
+              speed: Math.random() * 1.5 + 0.2,
+              char: Math.random() < 0.5 ? '0' : '1',
+              baseAlpha: Math.random() * 0.18 + 0.04,
+              flicker: Math.random() * Math.PI * 2,
+              flickerSpeed: Math.random() * 0.03 + 0.008,
+              charSwitch: Math.random() * 150
             });
           }
         }
-      })();
+        initRain();
+
+        window.addEventListener('resize', initRain);
+
+        document.addEventListener('mousemove', function(e) {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.active = true;
+        });
+        document.addEventListener('mouseleave', function() {
+          mouse.active = false;
+        });
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          ctx.font = fontSize + 'px JetBrains Mono, monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          for (var i = 0; i < drops.length; i++) {
+            var d = drops[i];
+
+            /* Update position */
+            d.y += d.speed;
+            d.flicker += d.flickerSpeed;
+            d.charSwitch -= 1;
+
+            /* Randomly switch character */
+            if (d.charSwitch <= 0) {
+              d.char = Math.random() < 0.5 ? '0' : '1';
+              d.charSwitch = Math.random() * 200 + 50;
+            }
+
+            /* Reset when off screen */
+            if (d.y > H + fontSize) {
+              d.y = -fontSize * 2;
+              d.speed = Math.random() * 1.2 + 0.3;
+              d.baseAlpha = Math.random() * 0.12 + 0.03;
+            }
+
+            /* Calculate alpha with flicker */
+            var alpha = d.baseAlpha + Math.sin(d.flicker) * 0.02;
+            if (alpha < 0.01) alpha = 0.01;
+
+            /* Default color: teal */
+            var r = TEAL[0], g = TEAL[1], b = TEAL[2];
+
+            /* Mouse proximity � gold shine */
+            if (mouse.active) {
+              var dx = mouse.x - d.x;
+              var dy = mouse.y - d.y;
+              var dist = Math.sqrt(dx * dx + dy * dy);
+              var radius = 280;
+              if (dist < radius) {
+                var t = 1 - (dist / radius);
+                t = Math.pow(t, 0.6); /* stronger, wider glow */
+                /* Lerp to bright gold */
+                r = Math.round(TEAL[0] + (GOLD[0] - TEAL[0]) * t);
+                g = Math.round(TEAL[1] + (GOLD[1] - TEAL[1]) * t);
+                b = Math.round(TEAL[2] + (GOLD[2] - TEAL[2]) * t);
+                /* Boost alpha near mouse */
+                alpha = alpha + t * 0.85;
+                /* Gold glow � much stronger */
+                if (t > 0.15) {
+                  ctx.shadowColor = 'rgba(255,215,0,' + Math.min(t * 1.0, 1) + ')';
+                  ctx.shadowBlur = t * 45;
+                }
+              } else {
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+              }
+            } else {
+              ctx.shadowColor = 'transparent';
+              ctx.shadowBlur = 0;
+            }
+
+            ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+            ctx.fillText(d.char, d.x, d.y);
+          }
+
+          /* Reset shadow after loop */
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+
+          /* Mouse glow halo � strong gold */
+          if (mouse.active) {
+            var mgrd = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 260);
+            mgrd.addColorStop(0, 'rgba(255,215,0,0.18)');
+            mgrd.addColorStop(0.3, 'rgba(255,215,0,0.08)');
+            mgrd.addColorStop(0.7, 'rgba(255,215,0,0.02)');
+            mgrd.addColorStop(1, 'rgba(255,215,0,0)');
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 260, 0, Math.PI * 2);
+            ctx.fillStyle = mgrd;
+            ctx.fill();
+          }
+
+          draw._raf = requestAnimationFrame(draw);
+        }
+        draw();
+
+        /* Pause animation when tab is hidden */
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) {
+            cancelAnimationFrame(draw._raf);
+          } else {
+            draw();
+          }
+        });
+      }
+    }
+  })();
   </script>
 
   <!-- Certifications Modal -->
