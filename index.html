@@ -69,14 +69,14 @@
       --ink: #f5f7fb;
       --muted: #a7b2c4;
       --subtle: #67738a;
-      --canvas: #070b12;
+      --canvas: #060812;
       --panel: #0d1420;
       --panel-2: #101a29;
       --line: rgba(198, 215, 238, .13);
       --line-bright: rgba(198, 215, 238, .24);
-      --mint: #74f7cf;
-      --gold: #ffbe73;
-      --pink: #ea89ff;
+      --mint: #65e5ff;
+      --gold: #a78bfa;
+      --pink: #ff6db1;
       --shadow: 0 24px 80px rgba(0, 0, 0, .32);
       --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -86,7 +86,7 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: var(--canvas); overflow-x: clip; }
     body { margin: 0; min-width: 320px; background: var(--canvas); color: var(--muted); font-family: var(--sans); font-size: 16px; line-height: 1.65; overflow-x: clip; }
-    body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(circle at 87% 8%, rgba(116,247,207,.12), transparent 27rem), radial-gradient(circle at 7% 50%, rgba(234,137,255,.075), transparent 25rem), linear-gradient(180deg, #070b12 0%, #090f19 48%, #070b12 100%); }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(circle at 87% 8%, rgba(101,229,255,.12), transparent 27rem), radial-gradient(circle at 7% 50%, rgba(167,139,250,.085), transparent 25rem), linear-gradient(180deg, #060812 0%, #090b1b 48%, #060812 100%); }
     body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .34; background-image: linear-gradient(rgba(255,255,255,.032) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.032) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 70%); }
     .scroll-progress { position: fixed; inset: 0 0 auto; z-index: 100; height: 2px; pointer-events: none; background: linear-gradient(90deg, var(--mint), var(--gold), var(--pink)); transform: scaleX(0); transform-origin: left; box-shadow: 0 0 18px rgba(116,247,207,.6); }
     .reveal { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
@@ -145,13 +145,19 @@
     .button-secondary:hover { border-color: rgba(116,247,207,.56); background: rgba(116,247,207,.08); }
     .arrow { font-size: 1.15em; line-height: 1; }
 
-    .portrait-frame { position: relative; max-width: 400px; justify-self: end; }
-    .portrait-frame::before { content: ""; position: absolute; inset: -1.3rem; border-radius: 38% 62% 55% 45% / 50% 45% 55% 50%; background: linear-gradient(135deg, rgba(116,247,207,.3), rgba(255,190,115,.1), rgba(234,137,255,.17)); filter: blur(2px); transform: rotate(-7deg); }
-    .portrait-frame::after { content: ""; position: absolute; right: -2.1rem; top: 18%; width: 7rem; height: 7rem; border: 1px dashed rgba(255,190,115,.45); border-radius: 50%; animation: spin 18s linear infinite; }
-    .portrait { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center; border: 1px solid rgba(116,247,207,.57); border-radius: 30% 70% 57% 43% / 46% 42% 58% 54%; box-shadow: var(--shadow); filter: saturate(.92) contrast(1.03); }
-    .portrait-note { position: absolute; z-index: 2; right: -1.25rem; bottom: 1.35rem; width: min(250px, 78%); padding: .92rem 1rem; border: 1px solid rgba(198,215,238,.18); border-radius: .85rem; background: rgba(13,20,32,.88); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
-    .portrait-note b { display: block; color: var(--ink); font-size: .86rem; }
-    .portrait-note span { display: block; margin-top: .12rem; color: var(--mint); font: 700 .7rem/1.45 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .portrait-frame { position: relative; width: min(430px, 100%); aspect-ratio: .88; justify-self: end; padding: 1.15rem; border: 1px solid rgba(101,229,255,.3); border-radius: 1.25rem; background: linear-gradient(145deg, rgba(12,19,36,.82), rgba(8,10,24,.62)); box-shadow: 0 28px 90px rgba(0,0,0,.38), inset 0 0 0 1px rgba(167,139,250,.08); }
+    .portrait-frame::before { content: ""; position: absolute; inset: .55rem; border: 1px solid rgba(198,215,238,.1); border-radius: .9rem; background: linear-gradient(135deg, rgba(101,229,255,.05), transparent 40%, rgba(167,139,250,.07)); pointer-events: none; }
+    .portrait-frame::after { content: ""; position: absolute; left: 1.15rem; right: 1.15rem; bottom: .65rem; height: 1px; background: linear-gradient(90deg, transparent, rgba(101,229,255,.55), transparent); opacity: .8; pointer-events: none; }
+    .neural-canvas { position: absolute; inset: -4.8rem; z-index: 2; width: calc(100% + 9.6rem); height: calc(100% + 9.6rem); pointer-events: none; opacity: .96; mix-blend-mode: screen; }
+    .portrait-frame-label { position: absolute; z-index: 3; color: rgba(198,215,238,.68); font: 700 .58rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .portrait-frame-label.top-left { top: .45rem; left: 1.2rem; color: var(--mint); }
+    .portrait-frame-label.top-right { top: .45rem; right: 1.2rem; }
+    .portrait-frame-label.bottom-left { bottom: .9rem; left: 1.2rem; }
+    .portrait-frame-label.bottom-right { bottom: .9rem; right: 1.2rem; color: var(--gold); }
+    .portrait { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 27%; border: 1px solid rgba(101,229,255,.48); border-radius: .92rem; box-shadow: 0 18px 55px rgba(0,0,0,.34); filter: saturate(.9) contrast(1.06); }
+    .portrait-note { position: absolute; z-index: 4; left: 2rem; right: 2rem; bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .72rem .85rem; border: 1px solid rgba(101,229,255,.26); border-radius: .58rem; background: rgba(6,8,18,.84); box-shadow: 0 12px 30px rgba(0,0,0,.3); backdrop-filter: blur(12px); }
+    .portrait-note b { display: block; color: var(--ink); font-size: .8rem; }
+    .portrait-note span { display: block; color: var(--mint); font: 700 .62rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; text-align: right; }
 
     .proof { position: relative; padding: .65rem 0; border-block: 1px solid var(--line); background: rgba(8,14,23,.56); }
     .proof::before { content: "PUBLIC SIGNAL"; position: absolute; top: -.55rem; left: max(1.5rem, calc((100vw - var(--max)) / 2)); padding: 0 .5rem; color: var(--subtle); background: var(--canvas); font: 700 .58rem/1 var(--mono); letter-spacing: .14em; }
@@ -247,6 +253,7 @@
     .footer-inner a:hover { color: var(--mint); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .neural-canvas { opacity: .48; } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
     @media (max-width: 920px) {
       .hero-grid, .expertise-layout, .career-layout { grid-template-columns: 1fr; }
@@ -268,7 +275,7 @@
       .proof-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       .work-grid, .public-grid { grid-template-columns: 1fr; }
       .work-card { min-height: 300px; }
-      .portrait-note { right: -.4rem; }
+      .portrait-note { left: 1.5rem; right: 1.5rem; }
       .footer-inner { flex-direction: column; }
     }
     @media (max-width: 440px) {
@@ -276,6 +283,9 @@
       .actions, .contact-links { display: grid; }
       .actions .button, .contact-links .button { width: 100%; }
       .proof-card { padding-inline: .4rem; }
+      .portrait-frame { width: 100%; padding: .8rem; }
+      .portrait-frame-label { font-size: .5rem; }
+      .portrait-note { left: 1.4rem; right: 1.4rem; bottom: 1.6rem; }
     }
   </style>
 </head>
@@ -322,8 +332,13 @@
           <div class="hero-signal"><span class="hero-signal-label">Current focus</span><strong>Evidence-grounded intelligence, built for the real world.</strong><span class="hero-signal-arrow" aria-hidden="true">↗</span></div>
         </div>
         <div class="portrait-frame reveal">
+          <canvas class="neural-canvas" id="neural-canvas" aria-hidden="true"></canvas>
+          <span class="portrait-frame-label top-left">AI / SYSTEMS</span>
+          <span class="portrait-frame-label top-right">NODE 01</span>
           <img class="portrait" src="profile.jpg" width="400" height="400" alt="Mahmoud Ali, AI Systems Architect">
-          <div class="portrait-note"><b>Build with clarity.</b><span>Architecture · NLP · AI systems</span></div>
+          <div class="portrait-note"><b>Build with clarity.</b><span>RAG · AGENTS · NLP</span></div>
+          <span class="portrait-frame-label bottom-left">SIGNAL ONLINE</span>
+          <span class="portrait-frame-label bottom-right">0xA1</span>
         </div>
       </div>
       <div class="wrap hero-floor" aria-hidden="true"><span>Scroll to explore</span><span class="hero-floor-line"></span><span>01—04</span></div>
@@ -531,6 +546,84 @@
         });
       }, {rootMargin: '-25% 0px -65%'});
       sections.forEach(section => sectionObserver.observe(section));
+    }
+
+    const neuralCanvas = document.querySelector('#neural-canvas');
+    if (neuralCanvas) {
+      const ctx = neuralCanvas.getContext('2d');
+      const nodes = [
+        [.14,.18],[.35,.11],[.57,.19],[.78,.12],[.9,.34],
+        [.2,.43],[.43,.36],[.67,.43],[.82,.62],[.15,.76],
+        [.38,.7],[.6,.79],[.83,.86]
+      ];
+      const links = [];
+      nodes.forEach((a, i) => nodes.slice(i + 1).forEach((b, j) => {
+        const dx = a[0] - b[0];
+        const dy = a[1] - b[1];
+        if (Math.hypot(dx, dy) < .34) links.push([i, i + 1 + j]);
+      }));
+      const pulses = links.filter((_, index) => index % 3 === 0).map((link, index) => ({link, phase:index / 3}));
+      let frame = 0;
+      let width = 0;
+      let height = 0;
+      const resizeNeural = () => {
+        const rect = neuralCanvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+        neuralCanvas.width = Math.max(1, Math.floor(width * dpr));
+        neuralCanvas.height = Math.max(1, Math.floor(height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const drawNeural = () => {
+        ctx.clearRect(0, 0, width, height);
+        ctx.lineWidth = 1;
+        links.forEach(([from, to], index) => {
+          const a = nodes[from];
+          const b = nodes[to];
+          const ax = a[0] * width;
+          const ay = a[1] * height;
+          const bx = b[0] * width;
+          const by = b[1] * height;
+          const active = (index + frame * .015) % 11 < 1.15;
+          ctx.strokeStyle = active ? 'rgba(101,229,255,.62)' : 'rgba(101,229,255,.22)';
+          ctx.beginPath();
+          ctx.moveTo(ax, ay);
+          ctx.quadraticCurveTo((ax + bx) / 2, (ay + by) / 2 - 12, bx, by);
+          ctx.stroke();
+        });
+        pulses.forEach(({link, phase}) => {
+          const a = nodes[link[0]];
+          const b = nodes[link[1]];
+          const t = ((frame * .006 + phase) % 1);
+          const x = (a[0] + (b[0] - a[0]) * t) * width;
+          const y = (a[1] + (b[1] - a[1]) * t) * height;
+          ctx.fillStyle = 'rgba(255,109,177,.95)';
+          ctx.shadowColor = 'rgba(255,109,177,.9)';
+          ctx.shadowBlur = 12;
+          ctx.beginPath();
+          ctx.arc(x, y, 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+        nodes.forEach(([nx, ny], index) => {
+          const x = nx * width;
+          const y = ny * height;
+          const pulse = 2.8 + Math.sin(frame * .035 + index) * .7;
+          ctx.fillStyle = index % 4 === 0 ? 'rgba(167,139,250,1)' : 'rgba(101,229,255,1)';
+          ctx.shadowColor = index % 4 === 0 ? 'rgba(167,139,250,.8)' : 'rgba(101,229,255,.8)';
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.arc(x, y, pulse, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+        frame += 1;
+        if (!reduceMotion) requestAnimationFrame(drawNeural);
+      };
+      resizeNeural();
+      window.addEventListener('resize', resizeNeural, {passive: true});
+      drawNeural();
     }
 
     const toggle = document.querySelector('.menu-toggle');
