@@ -88,6 +88,10 @@
     body { margin: 0; min-width: 320px; background: var(--canvas); color: var(--muted); font-family: var(--sans); font-size: 16px; line-height: 1.65; overflow-x: clip; }
     body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(circle at 87% 8%, rgba(116,247,207,.12), transparent 27rem), radial-gradient(circle at 7% 50%, rgba(234,137,255,.075), transparent 25rem), linear-gradient(180deg, #070b12 0%, #090f19 48%, #070b12 100%); }
     body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .34; background-image: linear-gradient(rgba(255,255,255,.032) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.032) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 70%); }
+    .scroll-progress { position: fixed; inset: 0 0 auto; z-index: 100; height: 2px; pointer-events: none; background: linear-gradient(90deg, var(--mint), var(--gold), var(--pink)); transform: scaleX(0); transform-origin: left; box-shadow: 0 0 18px rgba(116,247,207,.6); }
+    .reveal { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+    html.js .reveal { opacity: 0; transform: translateY(18px); }
+    html.js .reveal.is-visible { opacity: 1; transform: none; }
     a { color: inherit; }
     img { max-width: 100%; }
     button { font: inherit; }
@@ -106,14 +110,19 @@
     .brand small { display: block; margin-top: .05rem; color: var(--subtle); font: 600 .62rem/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: .35rem; list-style: none; margin: 0; padding: 0; }
     .nav-links a { display: inline-flex; padding: .55rem .74rem; color: var(--muted); border-radius: .45rem; font-size: .87rem; font-weight: 650; text-decoration: none; transition: color .2s, background .2s; }
-    .nav-links a:hover { color: var(--ink); background: rgba(255,255,255,.055); }
+    .nav-links a:hover, .nav-links a.is-active { color: var(--ink); background: rgba(116,247,207,.075); }
+    .nav-links a.is-active::after { content: ""; width: 4px; height: 4px; margin-left: .45rem; border-radius: 50%; background: var(--mint); box-shadow: 0 0 8px var(--mint); }
+    .nav-status { display: inline-flex; align-items: center; gap: .45rem; margin-left: auto; color: var(--subtle); font: 700 .66rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+    .nav-status::before { content: ""; width: .42rem; height: .42rem; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px rgba(116,247,207,.1), 0 0 12px rgba(116,247,207,.65); }
     .menu-toggle { display: none; align-items: center; gap: .5rem; padding: .55rem .72rem; color: var(--ink); border: 1px solid var(--line-bright); border-radius: .5rem; background: transparent; cursor: pointer; }
 
     main { display: block; }
-    .hero { position: relative; padding: clamp(5.8rem, 10vw, 9.8rem) 0 5rem; }
+    .hero { position: relative; isolation: isolate; overflow: hidden; padding: clamp(5.2rem, 8vw, 8rem) 0 3.2rem; }
+    .hero::before { content: "01 / 04"; position: absolute; top: 4.8rem; right: max(1.5rem, calc((100vw - var(--max)) / 2)); color: rgba(198,215,238,.24); font: 700 .68rem/1 var(--mono); letter-spacing: .14em; }
     .hero::after { content: ""; position: absolute; right: -8rem; bottom: -8rem; width: 34rem; height: 34rem; border: 1px solid rgba(116,247,207,.14); border-radius: 50%; box-shadow: 0 0 0 4.4rem rgba(116,247,207,.025), 0 0 0 9rem rgba(116,247,207,.015); pointer-events: none; }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(290px, .75fr); gap: clamp(2.5rem, 7vw, 7.4rem); align-items: center; }
     .hero-copy { position: relative; z-index: 1; }
+    .hero-copy::before { content: ""; position: absolute; left: -1.1rem; top: .25rem; width: 1px; height: 4.2rem; background: linear-gradient(var(--mint), transparent); opacity: .65; }
     h1 { max-width: 760px; margin: 1.1rem 0 1.35rem; color: var(--ink); font-size: clamp(3rem, 7.3vw, 6.25rem); line-height: .98; letter-spacing: -.065em; }
     h1 span { display: block; color: transparent; background: linear-gradient(90deg, var(--mint) 0%, #b7f6ea 46%, var(--gold) 100%); background-clip: text; }
     .hero-lede { max-width: 640px; margin: 0; font-size: clamp(1.08rem, 1.8vw, 1.27rem); line-height: 1.72; color: #c0cad9; }
@@ -121,6 +130,12 @@
     .hero-meta { display: flex; flex-wrap: wrap; gap: .65rem 1.15rem; margin: 1.45rem 0 2rem; padding: 0; list-style: none; color: var(--subtle); font: 600 .78rem/1.45 var(--mono); }
     .hero-meta li { display: inline-flex; align-items: center; gap: .45rem; }
     .hero-meta li::before { content: "/"; color: var(--mint); }
+    .hero-signal { display: flex; align-items: center; gap: .85rem; max-width: 620px; margin-top: 2.1rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); }
+    .hero-signal-label { color: var(--gold); font: 800 .62rem/1.3 var(--mono); letter-spacing: .13em; text-transform: uppercase; white-space: nowrap; }
+    .hero-signal strong { color: var(--ink); font-size: .84rem; font-weight: 700; }
+    .hero-signal-arrow { margin-left: auto; color: var(--mint); font: 800 1.15rem/1 var(--mono); }
+    .hero-floor { display: flex; align-items: center; gap: 1rem; margin-top: 2.4rem; color: var(--subtle); font: 700 .65rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .hero-floor-line { display: block; width: 5.5rem; height: 1px; background: linear-gradient(90deg, var(--mint), transparent); }
     .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 48px; padding: .8rem 1.05rem; border: 1px solid transparent; border-radius: .7rem; font-weight: 800; text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s, border .2s; }
     .button:hover { transform: translateY(-2px); }
@@ -138,9 +153,11 @@
     .portrait-note b { display: block; color: var(--ink); font-size: .86rem; }
     .portrait-note span { display: block; margin-top: .12rem; color: var(--mint); font: 700 .7rem/1.45 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
 
-    .proof { position: relative; padding: 1.1rem 0; border-block: 1px solid var(--line); background: rgba(8,14,23,.56); }
+    .proof { position: relative; padding: .65rem 0; border-block: 1px solid var(--line); background: rgba(8,14,23,.56); }
+    .proof::before { content: "PUBLIC SIGNAL"; position: absolute; top: -.55rem; left: max(1.5rem, calc((100vw - var(--max)) / 2)); padding: 0 .5rem; color: var(--subtle); background: var(--canvas); font: 700 .58rem/1 var(--mono); letter-spacing: .14em; }
     .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-    .proof-card { padding: 1.1rem 1rem; border-right: 1px solid var(--line); }
+    .proof-card { position: relative; padding: 1rem; border-right: 1px solid var(--line); }
+    .proof-card::before { content: ""; position: absolute; top: 0; left: 1rem; width: 1.6rem; height: 1px; background: var(--mint); opacity: .7; }
     .proof-card:last-child { border-right: 0; }
     .proof-value { display: block; color: var(--ink); font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 850; letter-spacing: -.045em; }
     .proof-label { display: block; margin-top: .1rem; color: var(--subtle); font: 700 .66rem/1.45 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
@@ -155,7 +172,9 @@
 
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .work-card { position: relative; display: flex; min-height: 370px; flex-direction: column; justify-content: space-between; padding: 1.55rem; overflow: hidden; border: 1px solid var(--line); border-radius: 1.1rem; background: linear-gradient(145deg, rgba(20,31,48,.88), rgba(9,14,23,.9)); box-shadow: 0 12px 35px rgba(0,0,0,.14); transition: transform .28s ease, border .28s ease, box-shadow .28s ease; }
-    .work-card:hover { transform: translateY(-7px); border-color: rgba(116,247,207,.52); box-shadow: 0 24px 55px rgba(0,0,0,.28); }
+    .work-card:hover { transform: translateY(-7px); border-color: rgba(116,247,207,.52); box-shadow: 0 24px 55px rgba(0,0,0,.28), 0 0 0 1px rgba(116,247,207,.08); }
+    .work-card::after { content: "↗"; position: absolute; top: 1.1rem; right: 1.15rem; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border: 1px solid rgba(198,215,238,.15); border-radius: 50%; color: var(--muted); font: 700 .9rem/1 var(--mono); transition: color .2s, border .2s, transform .2s; }
+    .work-card:hover::after { color: var(--mint); border-color: rgba(116,247,207,.5); transform: translate(2px,-2px); }
     .work-card::before { content: ""; position: absolute; inset: auto -30% -36% auto; width: 15rem; height: 15rem; border-radius: 50%; background: radial-gradient(circle, var(--orb, rgba(116,247,207,.2)), transparent 68%); pointer-events: none; }
     .work-card:nth-child(2) { --orb: rgba(255,190,115,.24); }
     .work-card:nth-child(3) { --orb: rgba(234,137,255,.2); }
@@ -207,7 +226,7 @@
 
     .public-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
     .public-card { display: flex; min-height: 210px; flex-direction: column; justify-content: space-between; padding: 1.35rem; border: 1px solid var(--line); border-radius: .9rem; background: rgba(13,20,32,.64); text-decoration: none; transition: transform .22s, border .22s, background .22s; }
-    .public-card:hover { transform: translateY(-4px); border-color: rgba(116,247,207,.52); background: rgba(18,29,45,.86); }
+    .public-card:hover { transform: translateY(-4px); border-color: rgba(116,247,207,.52); background: rgba(18,29,45,.86); box-shadow: 0 18px 45px rgba(0,0,0,.22); }
     .public-icon { display: grid; width: 2.35rem; height: 2.35rem; place-items: center; border-radius: .6rem; background: rgba(116,247,207,.1); color: var(--mint); font: 900 .9rem/1 var(--mono); }
     .public-card h3 { margin: 1.2rem 0 .32rem; color: var(--ink); font-size: 1rem; }
     .public-card p { margin: 0; color: var(--muted); font-size: .83rem; line-height: 1.52; }
@@ -215,6 +234,7 @@
 
     .contact { position: relative; padding-bottom: clamp(5rem, 10vw, 9rem); }
     .contact-card { position: relative; overflow: hidden; padding: clamp(2rem, 6vw, 4.5rem); border: 1px solid rgba(116,247,207,.36); border-radius: 1.3rem; background: linear-gradient(135deg, rgba(16,32,43,.95), rgba(13,20,32,.92) 50%, rgba(37,25,45,.82)); box-shadow: var(--shadow); }
+    .contact-card::before { content: "READY WHEN THE PROBLEM IS"; position: absolute; top: 1.2rem; right: 1.5rem; color: rgba(198,215,238,.34); font: 700 .58rem/1.3 var(--mono); letter-spacing: .12em; }
     .contact-card::after { content: ""; position: absolute; right: -7rem; bottom: -9rem; width: 24rem; height: 24rem; border: 1px solid rgba(116,247,207,.22); border-radius: 50%; box-shadow: 0 0 0 2.2rem rgba(116,247,207,.025), 0 0 0 5rem rgba(116,247,207,.018); }
     .contact-content { position: relative; z-index: 1; max-width: 760px; }
     .contact h2 { max-width: 14ch; margin-top: .9rem; font-size: clamp(2.4rem, 5.3vw, 4.6rem); }
@@ -238,6 +258,7 @@
     @media (max-width: 720px) {
       .wrap { width: min(var(--max), calc(100% - 2rem)); }
       .nav-inner { min-height: 66px; }
+      .nav-status { display: none; }
       .nav-links { position: absolute; top: calc(100% + 1px); right: 1rem; left: 1rem; display: none; padding: .55rem; border: 1px solid var(--line-bright); border-radius: .8rem; background: rgba(13,20,32,.98); box-shadow: var(--shadow); }
       .nav-links.open { display: grid; }
       .nav-links a { padding: .75rem; }
@@ -259,6 +280,7 @@
   </style>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <nav aria-label="Primary navigation">
@@ -267,6 +289,7 @@
         <span class="brand-mark" aria-hidden="true">M</span>
         <span>Mahmoud Ali<small>AI systems architect</small></span>
       </a>
+      <span class="nav-status">Open to selected work</span>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
         <span aria-hidden="true">Menu</span><span aria-hidden="true">+</span>
       </button>
@@ -283,7 +306,7 @@
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy reveal">
           <span class="eyebrow">Available for selected collaborations</span>
           <h1 id="hero-title">AI systems that turn complex knowledge into <span>reliable decisions.</span></h1>
           <p class="hero-lede">I am <strong>Mahmoud Ali, an AI Systems Architect</strong> specialising in production RAG, agentic workflows, Arabic NLP, and applied market intelligence. I bring a computational-linguistics foundation to the design of useful, explainable AI systems.</p>
@@ -296,20 +319,22 @@
             <a class="button button-primary" href="#work">Explore selected work <span class="arrow" aria-hidden="true">↘</span></a>
             <a class="button button-secondary" href="mailto:mahmoud.abdou2002@gmail.com">Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
           </div>
+          <div class="hero-signal"><span class="hero-signal-label">Current focus</span><strong>Evidence-grounded intelligence, built for the real world.</strong><span class="hero-signal-arrow" aria-hidden="true">↗</span></div>
         </div>
-        <div class="portrait-frame">
+        <div class="portrait-frame reveal">
           <img class="portrait" src="profile.jpg" width="400" height="400" alt="Mahmoud Ali, AI Systems Architect">
           <div class="portrait-note"><b>Build with clarity.</b><span>Architecture · NLP · AI systems</span></div>
         </div>
       </div>
+      <div class="wrap hero-floor" aria-hidden="true"><span>Scroll to explore</span><span class="hero-floor-line"></span><span>01—04</span></div>
     </section>
 
     <section class="proof" aria-label="Public proof points">
       <div class="wrap proof-grid">
-        <div class="proof-card"><span class="proof-value">10+</span><span class="proof-label">Years in AI and NLP</span></div>
-        <div class="proof-card"><span class="proof-value">24</span><span class="proof-label">Public GitHub repositories</span></div>
-        <div class="proof-card"><span class="proof-value">24</span><span class="proof-label">MQL5 marketplace products</span></div>
-        <div class="proof-card"><span class="proof-value">1.48K</span><span class="proof-label">YouTube subscribers</span></div>
+        <div class="proof-card reveal"><span class="proof-value">10+</span><span class="proof-label">Years in AI and NLP</span></div>
+        <div class="proof-card reveal"><span class="proof-value">24</span><span class="proof-label">Public GitHub repositories</span></div>
+        <div class="proof-card reveal"><span class="proof-value">24</span><span class="proof-label">MQL5 marketplace products</span></div>
+        <div class="proof-card reveal"><span class="proof-value">1.48K</span><span class="proof-label">YouTube subscribers</span></div>
       </div>
     </section>
 
@@ -323,7 +348,7 @@
           </div>
         </div>
         <div class="work-grid">
-          <article class="work-card">
+          <article class="work-card reveal">
             <span class="work-index" aria-hidden="true">01</span>
             <div>
               <span class="work-type">Enterprise AI · Current focus</span>
@@ -335,7 +360,7 @@
               <a class="work-link" href="https://medium.com/@mahmoud.abdou2002" target="_blank" rel="noreferrer">Read the latest writing <span aria-hidden="true">↗</span></a>
             </div>
           </article>
-          <article class="work-card">
+          <article class="work-card reveal">
             <span class="work-index" aria-hidden="true">02</span>
             <div>
               <span class="work-type">AI platform · Orchestration</span>
@@ -347,7 +372,7 @@
               <a class="work-link" href="https://github.com/mahmoud20138/Compass-AI" target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>
             </div>
           </article>
-          <article class="work-card">
+          <article class="work-card reveal">
             <span class="work-index" aria-hidden="true">03</span>
             <div>
               <span class="work-type">Applied AI · Market intelligence</span>
@@ -373,7 +398,7 @@
           </div>
         </div>
         <div class="expertise-layout">
-          <div class="expertise-panel">
+          <div class="expertise-panel reveal">
             <ol class="expertise-list">
               <li><span class="expertise-number">01</span><div><h3>Enterprise RAG and knowledge systems</h3><p>Evidence-aware retrieval, vector search, semantic chunking, re-ranking, contextual memory, and grounded answers for complex organisational knowledge.</p></div></li>
               <li><span class="expertise-number">02</span><div><h3>Agentic AI and orchestration</h3><p>Multi-step AI workflows, specialist-agent patterns, model-provider routing, tool calling, structured outputs, evaluation, and confidence-aware control points.</p></div></li>
@@ -381,7 +406,7 @@
               <li><span class="expertise-number">04</span><div><h3>Applied market intelligence</h3><p>Real-time data pipelines, market research tooling, algorithmic-trading ecosystems, MT5 integration, risk-oriented analytics, and explainable decision support.</p></div></li>
             </ol>
           </div>
-          <aside class="expertise-panel system-map" aria-label="AI systems architecture principles">
+          <aside class="expertise-panel system-map reveal" aria-label="AI systems architecture principles">
             <h3 class="map-title">A practical AI-system loop</h3>
             <div class="map-flow">
               <div class="map-node"><strong>Evidence</strong>Connect documents, public sources, APIs, and domain data.</div>
@@ -407,12 +432,12 @@
           </div>
         </div>
         <div class="career-layout">
-          <div class="timeline">
+          <div class="timeline reveal">
             <article class="timeline-item"><span class="timeline-date">2023 — Present</span><h3>Independent AI Systems Architect</h3><p>Designing RAG, agentic AI, AI platform, and market-intelligence systems with an emphasis on useful workflows and production-minded architecture.</p></article>
             <article class="timeline-item"><span class="timeline-date">Fintech and data intelligence</span><h3>Tribal</h3><p>Work across financial-text intelligence, customer feedback, data standardisation, and machine-learning-supported decision workflows.</p></article>
             <article class="timeline-item"><span class="timeline-date">Arabic language technology</span><h3>NLP engineering and computational linguistics</h3><p>Experience spanning Arabic NLP, machine translation, semantic extraction, named-entity recognition, and multilingual linguistic data.</p></article>
           </div>
-          <aside class="signal-card">
+          <aside class="signal-card reveal">
             <div>
               <span class="eyebrow">Public footprint</span>
               <h3>Technical work made available for scrutiny.</h3>
@@ -438,17 +463,17 @@
           </div>
         </div>
         <div class="public-grid">
-          <a class="public-card" href="https://github.com/mahmoud20138" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">GH</div><h3>GitHub</h3><p>Public repositories across AI systems, Arabic NLP, market intelligence, developer tools, and learning resources.</p></div><span class="go">Explore code ↗</span></a>
-          <a class="public-card" href="https://medium.com/@mahmoud.abdou2002" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">M</div><h3>Medium</h3><p>Technical writing on local AI, RAG, multi-agent systems, model orchestration, and applied AI architecture.</p></div><span class="go">Read articles ↗</span></a>
-          <a class="public-card" href="https://www.youtube.com/@OVERRIDE_AI_1" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">YT</div><h3>OVERRIDE AI</h3><p>Videos and tutorials covering practical AI tooling, models, coding agents, and Arabic-language technology discussion.</p></div><span class="go">Watch videos ↗</span></a>
-          <a class="public-card" href="https://www.mql5.com/en/users/mahmoud208" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">MT</div><h3>MQL5 Marketplace</h3><p>A catalogue of MetaTrader tools covering order flow, volume profile, market monitoring, and strategy testing.</p></div><span class="go">View products ↗</span></a>
+          <a class="public-card reveal" href="https://github.com/mahmoud20138" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">GH</div><h3>GitHub</h3><p>Public repositories across AI systems, Arabic NLP, market intelligence, developer tools, and learning resources.</p></div><span class="go">Explore code ↗</span></a>
+          <a class="public-card reveal" href="https://medium.com/@mahmoud.abdou2002" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">M</div><h3>Medium</h3><p>Technical writing on local AI, RAG, multi-agent systems, model orchestration, and applied AI architecture.</p></div><span class="go">Read articles ↗</span></a>
+          <a class="public-card reveal" href="https://www.youtube.com/@OVERRIDE_AI_1" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">YT</div><h3>OVERRIDE AI</h3><p>Videos and tutorials covering practical AI tooling, models, coding agents, and Arabic-language technology discussion.</p></div><span class="go">Watch videos ↗</span></a>
+          <a class="public-card reveal" href="https://www.mql5.com/en/users/mahmoud208" target="_blank" rel="noreferrer"><div><div class="public-icon" aria-hidden="true">MT</div><h3>MQL5 Marketplace</h3><p>A catalogue of MetaTrader tools covering order flow, volume profile, market monitoring, and strategy testing.</p></div><span class="go">View products ↗</span></a>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <div class="contact-card">
+        <div class="contact-card reveal">
           <div class="contact-content">
             <span class="eyebrow">Let us build something useful</span>
             <h2 id="contact-title">Bring the difficult AI problem.</h2>
@@ -471,6 +496,43 @@
   </footer>
 
   <script>
+    document.documentElement.classList.add('js');
+    const progress = document.querySelector('.scroll-progress');
+    const updateProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${scrollable > 0 ? window.scrollY / scrollable : 0})`;
+    };
+    window.addEventListener('scroll', updateProgress, {passive: true});
+    updateProgress();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {threshold: .12, rootMargin: '0px 0px -36px'});
+      document.querySelectorAll('.reveal').forEach((element, index) => {
+        element.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
+        revealObserver.observe(element);
+      });
+    } else {
+      document.querySelectorAll('.reveal').forEach(element => element.classList.add('is-visible'));
+    }
+
+    const sections = [...document.querySelectorAll('main section[id]')];
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
+        });
+      }, {rootMargin: '-25% 0px -65%'});
+      sections.forEach(section => sectionObserver.observe(section));
+    }
+
     const toggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     toggle.addEventListener('click', () => {
