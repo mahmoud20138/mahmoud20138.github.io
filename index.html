@@ -118,9 +118,28 @@
 
     main { display: block; }
     .hero { position: relative; isolation: isolate; overflow: hidden; padding: clamp(5.2rem, 8vw, 8rem) 0 3.2rem; }
+    .ecosystem-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: .82; mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); }
+    .ecosystem-field::before { content: "AI ECOSYSTEM / LIVE SIGNAL"; position: absolute; top: 5.8rem; left: max(1.5rem, calc((100vw - var(--max)) / 2)); color: rgba(101,229,255,.24); font: 700 .58rem/1 var(--mono); letter-spacing: .18em; }
+    .ecosystem-field::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 72% 42%, transparent 0 15rem, rgba(6,8,18,.32) 33rem), linear-gradient(90deg, rgba(6,8,18,.66), transparent 35%, transparent 68%, rgba(6,8,18,.28)); }
+    .ecosystem-track { position: absolute; display: flex; width: max-content; gap: 1rem; white-space: nowrap; }
+    .ecosystem-track-a { top: 18%; left: -14rem; animation: ecosystem-drift-a 42s linear infinite; }
+    .ecosystem-track-b { top: 65%; left: -22rem; animation: ecosystem-drift-b 52s linear infinite; }
+    .eco-chip { display: inline-flex; align-items: center; gap: .52rem; padding: .52rem .7rem; border: 1px solid rgba(101,229,255,.16); border-radius: .52rem; background: rgba(13,20,36,.32); color: rgba(198,215,238,.48); font: 700 .68rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; box-shadow: inset 0 0 18px rgba(101,229,255,.03); }
+    .eco-chip:nth-child(3n) { transform: translateY(1.4rem); border-color: rgba(167,139,250,.2); color: rgba(167,139,250,.58); }
+    .eco-chip:nth-child(4n) { transform: translateY(-1rem); border-color: rgba(255,109,177,.18); color: rgba(255,109,177,.56); }
+    .eco-mark { display: grid; width: 1.35rem; height: 1.35rem; place-items: center; border: 1px solid currentColor; border-radius: .34rem; font-size: .58rem; letter-spacing: 0; box-shadow: 0 0 12px currentColor; }
+    .eco-chip strong { color: rgba(245,247,251,.72); font-weight: 800; }
+    .eco-float { position: absolute; z-index: 1; color: rgba(101,229,255,.32); font: 800 .62rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; animation: ecosystem-float 7s ease-in-out infinite; }
+    .eco-float::before { content: ""; display: inline-block; width: .32rem; height: .32rem; margin-right: .45rem; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; vertical-align: .06em; }
+    .eco-float.one { top: 30%; right: 12%; animation-delay: -1s; }
+    .eco-float.two { top: 53%; left: 50%; color: rgba(167,139,250,.4); animation-delay: -3.4s; }
+    .eco-float.three { bottom: 16%; right: 30%; color: rgba(255,109,177,.34); animation-delay: -5.2s; }
+    @keyframes ecosystem-drift-a { from { transform: translate3d(0,0,0); } to { transform: translate3d(-38rem,0,0); } }
+    @keyframes ecosystem-drift-b { from { transform: translate3d(0,0,0); } to { transform: translate3d(-44rem,0,0); } }
+    @keyframes ecosystem-float { 0%,100% { transform: translate3d(0,0,0); opacity: .38; } 50% { transform: translate3d(0,-.7rem,0); opacity: .78; } }
     .hero::before { content: "01 / 04"; position: absolute; top: 4.8rem; right: max(1.5rem, calc((100vw - var(--max)) / 2)); color: rgba(198,215,238,.24); font: 700 .68rem/1 var(--mono); letter-spacing: .14em; }
     .hero::after { content: ""; position: absolute; right: -8rem; bottom: -8rem; width: 34rem; height: 34rem; border: 1px solid rgba(116,247,207,.14); border-radius: 50%; box-shadow: 0 0 0 4.4rem rgba(116,247,207,.025), 0 0 0 9rem rgba(116,247,207,.015); pointer-events: none; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(290px, .75fr); gap: clamp(2.5rem, 7vw, 7.4rem); align-items: center; }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(290px, .75fr); gap: clamp(2.5rem, 7vw, 7.4rem); align-items: center; }
     .hero-copy { position: relative; z-index: 1; }
     .hero-copy::before { content: ""; position: absolute; left: -1.1rem; top: .25rem; width: 1px; height: 4.2rem; background: linear-gradient(var(--mint), transparent); opacity: .65; }
     h1 { max-width: 760px; margin: 1.1rem 0 1.35rem; color: var(--ink); font-size: clamp(3rem, 7.3vw, 6.25rem); line-height: .98; letter-spacing: -.065em; }
@@ -253,7 +272,7 @@
     .footer-inner a:hover { color: var(--mint); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
-    @media (prefers-reduced-motion: reduce) { .neural-canvas { opacity: .48; } }
+    @media (prefers-reduced-motion: reduce) { .neural-canvas { opacity: .48; } .ecosystem-track, .eco-float { animation: none; } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
     @media (max-width: 920px) {
       .hero-grid, .expertise-layout, .career-layout { grid-template-columns: 1fr; }
@@ -284,6 +303,11 @@
       .actions .button, .contact-links .button { width: 100%; }
       .proof-card { padding-inline: .4rem; }
       .portrait-frame { width: 100%; padding: .8rem; }
+      .ecosystem-field { opacity: .48; }
+      .ecosystem-field::before { top: 4.6rem; left: 1rem; font-size: .5rem; }
+      .eco-chip { padding: .42rem .55rem; font-size: .56rem; }
+      .eco-mark { width: 1.1rem; height: 1.1rem; }
+      .eco-float { display: none; }
       .portrait-frame-label { font-size: .5rem; }
       .portrait-note { left: 1.4rem; right: 1.4rem; bottom: 1.6rem; }
     }
@@ -315,6 +339,31 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="ecosystem-field" aria-hidden="true">
+        <div class="ecosystem-track ecosystem-track-a">
+          <span class="eco-chip"><i class="eco-mark">O</i><strong>OpenAI</strong> GPT-4o</span>
+          <span class="eco-chip"><i class="eco-mark">A</i><strong>Anthropic</strong> Claude</span>
+          <span class="eco-chip"><i class="eco-mark">G</i><strong>Google</strong> Gemini</span>
+          <span class="eco-chip"><i class="eco-mark">L</i><strong>Meta</strong> Llama</span>
+          <span class="eco-chip"><i class="eco-mark">M</i><strong>Mistral</strong> Large</span>
+          <span class="eco-chip"><i class="eco-mark">Q</i><strong>Qwen</strong> 2.5</span>
+          <span class="eco-chip"><i class="eco-mark">D</i><strong>DeepSeek</strong> R1</span>
+          <span class="eco-chip"><i class="eco-mark">x</i><strong>xAI</strong> Grok</span>
+        </div>
+        <div class="ecosystem-track ecosystem-track-b">
+          <span class="eco-chip"><i class="eco-mark">R</i><strong>RAG</strong> retrieval</span>
+          <span class="eco-chip"><i class="eco-mark">A</i><strong>Agents</strong> tool use</span>
+          <span class="eco-chip"><i class="eco-mark">V</i><strong>Vector</strong> search</span>
+          <span class="eco-chip"><i class="eco-mark">M</i><strong>Multimodal</strong> vision</span>
+          <span class="eco-chip"><i class="eco-mark">E</i><strong>Eval</strong> observability</span>
+          <span class="eco-chip"><i class="eco-mark">L</i><strong>Local AI</strong> inference</span>
+          <span class="eco-chip"><i class="eco-mark">M</i><strong>MCP</strong> tool protocol</span>
+          <span class="eco-chip"><i class="eco-mark">S</i><strong>Structured</strong> outputs</span>
+        </div>
+        <span class="eco-float one">agents / online</span>
+        <span class="eco-float two">context window // 128k</span>
+        <span class="eco-float three">inference / ready</span>
+      </div>
       <div class="wrap hero-grid">
         <div class="hero-copy reveal">
           <span class="eyebrow">Available for selected collaborations</span>
